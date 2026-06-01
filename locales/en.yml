@@ -198,7 +198,7 @@ tools:
     description: A calculator for evaluating mathematical expressions. You can use functions like sqrt, cos, sin, abs, etc.
 
   json-to-yaml-converter:
-    title: JSON to YAML converter
+    title: JSON to YAML
     description: Simply convert JSON to YAML with this online live converter.
 
   url-parser:
@@ -230,7 +230,7 @@ tools:
     description: Prettify your JSON string into a friendly, human-readable format.
 
   docker-run-to-docker-compose-converter:
-    title: Docker run to Docker compose converter
+    title: Docker run to Docker compose
     description: Transforms "docker run" commands into docker-compose files!
 
   mac-address-lookup:
@@ -346,7 +346,7 @@ tools:
     description: Convert a number between different bases (decimal, hexadecimal, binary, octal, base64, ...)
 
   yaml-to-json-converter:
-    title: YAML to JSON converter
+    title: YAML to JSON
     description: Simply convert YAML to JSON with this online live converter.
 
   uuid-generator:
