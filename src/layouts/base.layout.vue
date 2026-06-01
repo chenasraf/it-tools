@@ -137,7 +137,7 @@ const tools = computed<ToolCategory[]>(() => [
         <c-tooltip position="bottom" :tooltip="$t('home.support')">
           <c-button
             round
-            href="https://www.buymeacoffee.com/casraf"
+            href="https://www.ko-fi.com/casraf"
             rel="noopener"
             target="_blank"
             class="support-button"
