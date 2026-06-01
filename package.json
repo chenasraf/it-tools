@@ -2,7 +2,7 @@
   "name": "it-tools",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@9.11.0",
+  "packageManager": "pnpm@11.5.0",
   "description": "Collection of handy online tools for developers, with great UX. ",
   "author": "Corentin Th <corentin.thomasset74+it-tools@gmail.com> (https://corentin.tech)",
   "license": "GNU GPLv3",
@@ -154,10 +154,5 @@
     "vitest": "^0.34.0",
     "workbox-window": "^7.0.0",
     "zx": "^7.2.1"
-  },
-  "pnpm": {
-    "overrides": {
-      "@unhead/vue>@vueuse/shared": "~12.0.0"
-    }
   }
 }
