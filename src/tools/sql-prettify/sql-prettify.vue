@@ -1,25 +1,32 @@
 <script setup lang="ts">
-import { type FormatOptionsWithLanguage, format as formatSQL } from 'sql-formatter';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
-import { useStyleStore } from '@/stores/style.store';
+import { type FormatOptionsWithLanguage, format as formatSQL } from 'sql-formatter'
+import TextareaCopyable from '@/components/TextareaCopyable.vue'
+import { useStyleStore } from '@/stores/style.store'
 
-const inputElement = ref<HTMLElement>();
-const styleStore = useStyleStore();
+const inputElement = ref<HTMLElement>()
+const styleStore = useStyleStore()
 const config = reactive<FormatOptionsWithLanguage>({
   keywordCase: 'upper',
   useTabs: false,
   language: 'sql',
   indentStyle: 'standard',
   tabulateAlias: true,
-});
+})
 
-const rawSQL = ref('select field1,field2,field3 from my_table where my_condition;');
-const prettySQL = computed(() => formatSQL(rawSQL.value, config));
+const rawSQL = ref('select field1,field2,field3 from my_table where my_condition;')
+const prettySQL = computed(() => formatSQL(rawSQL.value, config))
 </script>
 
 <template>
   <div style="flex: 0 0 100%">
-    <div style="max-width: 600px" :class="{ 'flex-col': styleStore.isSmallScreen }" mx-auto mb-5 flex gap-2>
+    <div
+      style="max-width: 600px"
+      :class="{ 'flex-col': styleStore.isSmallScreen }"
+      mx-auto
+      mb-5
+      flex
+      gap-2
+    >
       <c-select
         v-model:value="config.language"
         flex-1
@@ -41,7 +48,8 @@ const prettySQL = computed(() => formatSQL(rawSQL.value, config));
         ]"
       />
       <c-select
-        v-model:value="config.keywordCase" label="Keyword case"
+        v-model:value="config.keywordCase"
+        label="Keyword case"
         flex-1
         :options="[
           { label: 'UPPERCASE', value: 'upper' },
@@ -50,7 +58,8 @@ const prettySQL = computed(() => formatSQL(rawSQL.value, config));
         ]"
       />
       <c-select
-        v-model:value="config.indentStyle" label="Indent style"
+        v-model:value="config.indentStyle"
+        label="Indent style"
         flex-1
         :options="[
           { label: 'Standard', value: 'standard' },

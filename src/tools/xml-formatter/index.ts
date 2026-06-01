@@ -1,6 +1,6 @@
-import { Code } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { Code } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.xml-formatter.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./xml-formatter.vue'),
   icon: Code,
   createdAt: new Date('2023-06-17'),
-});
+})

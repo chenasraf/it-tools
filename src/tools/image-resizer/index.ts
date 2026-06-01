@@ -1,5 +1,5 @@
-import { Resize } from '@vicons/tabler';
-import { defineTool } from '../tool';
+import { Resize } from '@vicons/tabler'
+import { defineTool } from '../tool'
 
 export const tool = defineTool({
   name: 'Image resizer',
@@ -24,4 +24,4 @@ export const tool = defineTool({
   component: () => import('./image-resizer.vue'),
   icon: Resize,
   createdAt: new Date('2026-06-02'),
-});
+})

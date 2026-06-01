@@ -1,6 +1,6 @@
-import { FileDiff } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { FileDiff } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.text-diff.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./text-diff.vue'),
   icon: FileDiff,
   createdAt: new Date('2023-08-16'),
-});
+})

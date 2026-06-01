@@ -1,13 +1,13 @@
-import { useStyleStore } from '@/stores/style.store';
+import { useStyleStore } from '@/stores/style.store'
 
-export { defineThemes };
+export { defineThemes }
 
 function defineThemes<Theme>(themes: { light: Theme; dark: Theme }) {
   return {
     themes,
     useTheme() {
-      const styleStore = useStyleStore();
-      return computed(() => themes[styleStore.isDarkTheme ? 'dark' : 'light']);
+      const styleStore = useStyleStore()
+      return computed(() => themes[styleStore.isDarkTheme ? 'dark' : 'light'])
     },
-  };
+  }
 }

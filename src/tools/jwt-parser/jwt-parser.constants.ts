@@ -13,7 +13,7 @@ export const ALGORITHM_DESCRIPTIONS: { [k: string]: string } = {
   PS384: 'RSASSA-PSS using SHA-384 and MGF1 with SHA-384',
   PS512: 'RSASSA-PSS using SHA-512 and MGF1 with SHA-512',
   none: 'No digital signature or MAC performed',
-};
+}
 
 // List extracted from IANA: https://www.iana.org/assignments/jwt/jwt.xhtml
 export const CLAIM_DESCRIPTIONS: Record<string, string> = {
@@ -89,4 +89,4 @@ export const CLAIM_DESCRIPTIONS: Record<string, string> = {
   groups: 'Groups',
   entitlements: 'Entitlements',
   token_introspection: 'Token introspection response',
-};
+}

@@ -1,4 +1,4 @@
-import type { OGSchemaType } from '../OGSchemaType.type';
+import type { OGSchemaType } from '../OGSchemaType.type'
 
 export const article: OGSchemaType = {
   name: 'Article',
@@ -21,13 +21,23 @@ export const article: OGSchemaType = {
       key: 'article:expiration_time',
       placeholder: 'When the article is out of date after...',
     },
-    { type: 'input', label: 'Author', key: 'article:author', placeholder: 'Writers of the article...' },
+    {
+      type: 'input',
+      label: 'Author',
+      key: 'article:author',
+      placeholder: 'Writers of the article...',
+    },
     {
       type: 'input',
       label: 'Section',
       key: 'article:section',
       placeholder: 'A high-level section name. E.g. Technology..',
     },
-    { type: 'input', label: 'Tag', key: 'article:tag', placeholder: 'Tag words associated with this article...' },
+    {
+      type: 'input',
+      label: 'Tag',
+      key: 'article:tag',
+      placeholder: 'Tag words associated with this article...',
+    },
   ],
-};
+}

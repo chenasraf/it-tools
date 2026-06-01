@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { lib } from 'crypto-js';
-import { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js';
+import type { lib } from 'crypto-js'
+import { MD5, RIPEMD160, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512, enc } from 'crypto-js'
 
-import InputCopyable from '../../components/InputCopyable.vue';
-import { convertHexToBin } from './hash-text.service';
-import { useQueryParam } from '@/composable/queryParams';
+import InputCopyable from '../../components/InputCopyable.vue'
+import { convertHexToBin } from './hash-text.service'
+import { useQueryParam } from '@/composable/queryParams'
 
 const algos = {
   MD5,
@@ -15,29 +15,40 @@ const algos = {
   SHA384,
   SHA3,
   RIPEMD160,
-} as const;
+} as const
 
-type AlgoNames = keyof typeof algos;
-type Encoding = keyof typeof enc | 'Bin';
-const algoNames = Object.keys(algos) as AlgoNames[];
-const encoding = useQueryParam<Encoding>({ defaultValue: 'Hex', name: 'encoding' });
-const clearText = ref('');
+type AlgoNames = keyof typeof algos
+type Encoding = keyof typeof enc | 'Bin'
+const algoNames = Object.keys(algos) as AlgoNames[]
+const encoding = useQueryParam<Encoding>({ defaultValue: 'Hex', name: 'encoding' })
+const clearText = ref('')
 
 function formatWithEncoding(words: lib.WordArray, encoding: Encoding) {
   if (encoding === 'Bin') {
-    return convertHexToBin(words.toString(enc.Hex));
+    return convertHexToBin(words.toString(enc.Hex))
   }
 
-  return words.toString(enc[encoding]);
+  return words.toString(enc[encoding])
 }
 
-const hashText = (algo: AlgoNames, value: string) => formatWithEncoding(algos[algo](value), encoding.value);
+function hashText(algo: AlgoNames, value: string) {
+  return formatWithEncoding(algos[algo](value), encoding.value)
+}
 </script>
 
 <template>
   <div>
     <c-card>
-      <c-input-text v-model:value="clearText" multiline raw-text placeholder="Your string to hash..." rows="3" autosize autofocus label="Your text to hash:" />
+      <c-input-text
+        v-model:value="clearText"
+        multiline
+        raw-text
+        placeholder="Your string to hash..."
+        rows="3"
+        autosize
+        autofocus
+        label="Your text to hash:"
+      />
 
       <n-divider />
 

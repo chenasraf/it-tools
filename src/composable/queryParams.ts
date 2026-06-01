@@ -1,8 +1,8 @@
-import { useRouteQuery } from '@vueuse/router';
-import { computed } from 'vue';
-import { useStorage } from '@vueuse/core';
+import { useRouteQuery } from '@vueuse/router'
+import { computed } from 'vue'
+import { useStorage } from '@vueuse/core'
 
-export { useQueryParam, useQueryParamOrStorage };
+export { useQueryParam, useQueryParamOrStorage }
 
 const transformers = {
   number: {
@@ -19,48 +19,60 @@ const transformers = {
   },
   object: {
     fromQuery: (value: string) => {
-      return JSON.parse(value);
+      return JSON.parse(value)
     },
     toQuery: (value: object) => JSON.stringify(value),
   },
-};
+}
 
 function useQueryParam<T>({ name, defaultValue }: { name: string; defaultValue: T }) {
-  const type = typeof defaultValue;
-  const transformer = transformers[type as keyof typeof transformers] ?? transformers.string;
+  const type = typeof defaultValue
+  const transformer = transformers[type as keyof typeof transformers] ?? transformers.string
 
-  const proxy = useRouteQuery(name, transformer.toQuery(defaultValue as never));
+  const proxy = useRouteQuery(name, transformer.toQuery(defaultValue as never))
 
   return computed<T>({
     get() {
-      return transformer.fromQuery(proxy.value) as unknown as T;
+      return transformer.fromQuery(proxy.value) as unknown as T
     },
     set(value) {
-      proxy.value = transformer.toQuery(value as never);
+      proxy.value = transformer.toQuery(value as never)
     },
-  });
+  })
 }
 
-function useQueryParamOrStorage<T>({ name, storageName, defaultValue }: { name: string; storageName: string; defaultValue: T }) {
-  const type = typeof defaultValue;
-  const transformer = transformers[type as keyof typeof transformers] ?? transformers.string;
+function useQueryParamOrStorage<T>({
+  name,
+  storageName,
+  defaultValue,
+}: {
+  name: string
+  storageName: string
+  defaultValue: T
+}) {
+  const type = typeof defaultValue
+  const transformer = transformers[type as keyof typeof transformers] ?? transformers.string
 
-  const storageRef = useStorage(storageName, defaultValue);
-  const proxyDefaultValue = transformer.toQuery(defaultValue as never);
-  const proxy = useRouteQuery(name, proxyDefaultValue);
+  const storageRef = useStorage(storageName, defaultValue)
+  const proxyDefaultValue = transformer.toQuery(defaultValue as never)
+  const proxy = useRouteQuery(name, proxyDefaultValue)
 
-  const r = ref(defaultValue);
+  const r = ref(defaultValue)
 
-  watch(r,
+  watch(
+    r,
     (value) => {
-      proxy.value = transformer.toQuery(value as never);
-      storageRef.value = value as never;
+      proxy.value = transformer.toQuery(value as never)
+      storageRef.value = value as never
     },
-    { deep: true });
+    { deep: true },
+  )
 
-  r.value = (proxy.value && proxy.value !== proxyDefaultValue
-    ? transformer.fromQuery(proxy.value) as unknown as T
-    : storageRef.value as T) as never;
+  r.value = (
+    proxy.value && proxy.value !== proxyDefaultValue
+      ? (transformer.fromQuery(proxy.value) as unknown as T)
+      : (storageRef.value as T)
+  ) as never
 
-  return r;
+  return r
 }

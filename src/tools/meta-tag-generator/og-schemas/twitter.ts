@@ -1,4 +1,4 @@
-import type { OGSchemaType } from '../OGSchemaType.type';
+import type { OGSchemaType } from '../OGSchemaType.type'
 
 export const twitter: OGSchemaType = {
   name: 'Twitter',
@@ -28,4 +28,4 @@ export const twitter: OGSchemaType = {
       key: 'twitter:creator',
     },
   ],
-};
+}

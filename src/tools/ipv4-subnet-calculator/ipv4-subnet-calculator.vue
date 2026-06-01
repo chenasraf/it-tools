@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { Netmask } from 'netmask';
-import { useStorage } from '@vueuse/core';
-import { ArrowLeft, ArrowRight } from '@vicons/tabler';
-import { getIPClass } from './ipv4-subnet-calculator.models';
-import { withDefaultOnError } from '@/utils/defaults';
-import { isNotThrowing } from '@/utils/boolean';
-import SpanCopyable from '@/components/SpanCopyable.vue';
+import { Netmask } from 'netmask'
+import { useStorage } from '@vueuse/core'
+import { ArrowLeft, ArrowRight } from '@vicons/tabler'
+import { getIPClass } from './ipv4-subnet-calculator.models'
+import { withDefaultOnError } from '@/utils/defaults'
+import { isNotThrowing } from '@/utils/boolean'
+import SpanCopyable from '@/components/SpanCopyable.vue'
 
-const ip = useStorage('ipv4-subnet-calculator:ip', '192.168.0.1/24');
+const ip = useStorage('ipv4-subnet-calculator:ip', '192.168.0.1/24')
 
-const getNetworkInfo = (address: string) => new Netmask(address.trim());
+const getNetworkInfo = (address: string) => new Netmask(address.trim())
 
-const networkInfo = computed(() => withDefaultOnError(() => getNetworkInfo(ip.value), undefined));
+const networkInfo = computed(() => withDefaultOnError(() => getNetworkInfo(ip.value), undefined))
 
 const ipValidationRules = [
   {
     message: 'We cannot parse this address, check the format',
     validator: (value: string) => isNotThrowing(() => getNetworkInfo(value.trim())),
   },
-];
+]
 
 const sections: {
   label: string
@@ -27,7 +27,7 @@ const sections: {
 }[] = [
   {
     label: 'Netmask',
-    getValue: block => block.toString(),
+    getValue: (block) => block.toString(),
   },
   {
     label: 'Network address',
@@ -39,7 +39,8 @@ const sections: {
   },
   {
     label: 'Network mask in binary',
-    getValue: ({ bitmask }) => ('1'.repeat(bitmask) + '0'.repeat(32 - bitmask)).match(/.{8}/g)?.join('.') ?? '',
+    getValue: ({ bitmask }) =>
+      ('1'.repeat(bitmask) + '0'.repeat(32 - bitmask)).match(/.{8}/g)?.join('.') ?? '',
   },
   {
     label: 'CIDR notation',
@@ -71,13 +72,13 @@ const sections: {
     getValue: ({ base: ip }) => getIPClass({ ip }),
     undefinedFallback: 'Unknown class type',
   },
-];
+]
 
 function switchToBlock({ count = 1 }: { count?: number }) {
-  const next = networkInfo.value?.next(count);
+  const next = networkInfo.value?.next(count)
 
   if (next) {
-    ip.value = next.toString();
+    ip.value = next.toString()
   }
 }
 </script>

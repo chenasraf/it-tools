@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import cronstrue from 'cronstrue';
-import { isValidCron } from 'cron-validator';
-import { useStyleStore } from '@/stores/style.store';
+import cronstrue from 'cronstrue'
+import { isValidCron } from 'cron-validator'
+import { useStyleStore } from '@/stores/style.store'
 
 function isCronValid(v: string) {
-  return isValidCron(v, { allowBlankDay: true, alias: true, seconds: true });
+  return isValidCron(v, { allowBlankDay: true, alias: true, seconds: true })
 }
 
-const styleStore = useStyleStore();
+const styleStore = useStyleStore()
 
-const cron = ref('40 * * * *');
+const cron = ref('40 * * * *')
 const cronstrueConfig = reactive({
   verbose: true,
   dayOfWeekStartIndexZero: true,
   use24HourTimeFormat: true,
   throwExceptionOnParseError: true,
-});
+})
 
 const helpers = [
   {
@@ -90,21 +90,21 @@ const helpers = [
     example: '',
     equivalent: '',
   },
-];
+]
 
 const cronString = computed(() => {
   if (isCronValid(cron.value)) {
-    return cronstrue.toString(cron.value, cronstrueConfig);
+    return cronstrue.toString(cron.value, cronstrueConfig)
   }
-  return ' ';
-});
+  return ' '
+})
 
 const cronValidationRules = [
   {
     validator: (value: string) => isCronValid(value),
     message: 'This cron is invalid',
   },
-];
+]
 </script>
 
 <template>
@@ -148,10 +148,16 @@ const cronValidationRules = [
 | | | | ┌──── month (1 - 12) OR jan,feb,mar,apr ...
 | | | | | ┌── day of week (0 - 6, sunday=0) OR sun,mon ...
 | | | | | |
-* * * * * * command</pre>
+* * * * * * command</pre
+    >
 
     <div v-if="styleStore.isSmallScreen">
-      <c-card v-for="{ symbol, meaning, example, equivalent } in helpers" :key="symbol" mb-3 important:border-none>
+      <c-card
+        v-for="{ symbol, meaning, example, equivalent } in helpers"
+        :key="symbol"
+        mb-3
+        important:border-none
+      >
         <div>
           Symbol: <strong>{{ symbol }}</strong>
         </div>
@@ -160,7 +166,9 @@ const cronValidationRules = [
         </div>
         <div>
           Example:
-          <strong><code>{{ example }}</code></strong>
+          <strong
+            ><code>{{ example }}</code></strong
+          >
         </div>
         <div>
           Equivalent: <strong>{{ equivalent }}</strong>

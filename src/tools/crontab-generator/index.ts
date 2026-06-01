@@ -1,6 +1,6 @@
-import { Alarm } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { Alarm } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.crontab-generator.title'),
@@ -23,4 +23,4 @@ export const tool = defineTool({
   ],
   component: () => import('./crontab-generator.vue'),
   icon: Alarm,
-});
+})

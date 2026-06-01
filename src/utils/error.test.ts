@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { getErrorMessageIfThrows } from './error';
+import { describe, expect, it } from 'vitest'
+import { getErrorMessageIfThrows } from './error'
 
 describe('error util', () => {
   describe('getErrorMessageIfThrows', () => {
@@ -7,24 +7,24 @@ describe('error util', () => {
       expect(
         getErrorMessageIfThrows(() => {
           // eslint-disable-next-line no-throw-literal
-          throw 'message';
+          throw 'message'
         }),
-      ).to.equal('message');
+      ).to.equal('message')
 
       expect(
         getErrorMessageIfThrows(() => {
-          throw new Error('message');
+          throw new Error('message')
         }),
-      ).to.equal('message');
+      ).to.equal('message')
 
       expect(
         getErrorMessageIfThrows(() => {
           // eslint-disable-next-line no-throw-literal
-          throw { message: 'message' };
+          throw { message: 'message' }
         }),
-      ).to.equal('message');
+      ).to.equal('message')
 
-      expect(getErrorMessageIfThrows(() => {})).to.equal(undefined);
-    });
-  });
-});
+      expect(getErrorMessageIfThrows(() => {})).to.equal(undefined)
+    })
+  })
+})

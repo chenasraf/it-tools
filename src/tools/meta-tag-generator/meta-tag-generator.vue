@@ -1,53 +1,56 @@
 <script setup lang="ts">
-import { generateMeta } from '@it-tools/oggen';
-import _ from 'lodash';
-import { image, ogSchemas, twitter, website } from './og-schemas';
-import type { OGSchemaType, OGSchemaTypeElementSelect } from './OGSchemaType.type';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import { generateMeta } from '@it-tools/oggen'
+import _ from 'lodash'
+import { image, ogSchemas, twitter, website } from './og-schemas'
+import type { OGSchemaType, OGSchemaTypeElementSelect } from './OGSchemaType.type'
+import TextareaCopyable from '@/components/TextareaCopyable.vue'
 
 // Since type guards do not work in template
 
 const metadata = ref<{ type: string; [k: string]: any }>({
-  'type': 'website',
+  type: 'website',
   'twitter:card': 'summary_large_image',
-});
+})
 
 watch(
   () => ref(metadata.value.type),
   (_ignored, prevSection) => {
-    const section = ogSchemas[prevSection.value];
+    const section = ogSchemas[prevSection.value]
 
     if (!section) {
-      return;
+      return
     }
 
     section.elements.forEach(({ key }) => {
-      metadata.value[key] = '';
-    });
+      metadata.value[key] = ''
+    })
   },
-);
+)
 
 const sections = computed(() => {
-  const secs: OGSchemaType[] = [website, image, twitter];
-  const additionalSchema = ogSchemas[metadata.value.type];
+  const secs: OGSchemaType[] = [website, image, twitter]
+  const additionalSchema = ogSchemas[metadata.value.type]
 
   if (additionalSchema) {
-    secs.push(additionalSchema);
+    secs.push(additionalSchema)
   }
 
-  return secs;
-});
+  return secs
+})
 
 const metaTags = computed(() => {
   const twitterMeta = _.chain(metadata.value)
     .pickBy((_value, k) => k.startsWith('twitter:'))
     .mapKeys((_value, k) => k.replace(/^twitter:/, ''))
-    .value();
+    .value()
 
-  const otherMeta = _.pickBy(metadata.value, (_value, k) => !k.startsWith('twitter:'));
+  const otherMeta = _.pickBy(metadata.value, (_value, k) => !k.startsWith('twitter:'))
 
-  return generateMeta({ ...otherMeta, twitter: twitterMeta }, { generateTwitterCompatibleMeta: true });
-});
+  return generateMeta(
+    { ...otherMeta, twitter: twitterMeta },
+    { generateTwitterCompatibleMeta: true },
+  )
+})
 </script>
 
 <template>
@@ -62,7 +65,12 @@ const metaTags = computed(() => {
           {{ label }}
         </n-input-group-label>
 
-        <c-input-text v-if="type === 'input'" v-model:value="metadata[key]" :placeholder="placeholder" clearable />
+        <c-input-text
+          v-if="type === 'input'"
+          v-model:value="metadata[key]"
+          :placeholder="placeholder"
+          clearable
+        />
         <n-dynamic-input
           v-else-if="type === 'input-multiple'"
           v-model:value="metadata[key]"

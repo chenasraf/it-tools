@@ -1,33 +1,33 @@
 <script setup lang="ts">
 // Duplicate issue with sub directory
 
-import { addMilliseconds, formatRelative } from 'date-fns';
+import { addMilliseconds, formatRelative } from 'date-fns'
 
-import { enGB } from 'date-fns/locale';
+import { enGB } from 'date-fns/locale'
 
-import { formatMsDuration } from './eta-calculator.service';
+import { formatMsDuration } from './eta-calculator.service'
 
-const unitCount = ref(3 * 62);
-const unitPerTimeSpan = ref(3);
-const timeSpan = ref(5);
-const timeSpanUnitMultiplier = ref(60000);
-const startedAt = ref(Date.now());
+const unitCount = ref(3 * 62)
+const unitPerTimeSpan = ref(3)
+const timeSpan = ref(5)
+const timeSpanUnitMultiplier = ref(60000)
+const startedAt = ref(Date.now())
 
 const durationMs = computed(() => {
-  const timeSpanMs = timeSpan.value * timeSpanUnitMultiplier.value;
+  const timeSpanMs = timeSpan.value * timeSpanUnitMultiplier.value
 
-  return unitCount.value / (unitPerTimeSpan.value / timeSpanMs);
-});
+  return unitCount.value / (unitPerTimeSpan.value / timeSpanMs)
+})
 const endAt = computed(() =>
   formatRelative(addMilliseconds(startedAt.value, durationMs.value), Date.now(), { locale: enGB }),
-);
+)
 </script>
 
 <template>
   <div>
     <div text-justify op-70>
-      With a concrete example, if you wash 5 plates in 3 minutes and you have 500 plates to wash, it will take you 5
-      hours to wash them all.
+      With a concrete example, if you wash 5 plates in 3 minutes and you have 500 plates to wash, it
+      will take you 5 hours to wash them all.
     </div>
     <n-divider />
     <div flex gap-2>

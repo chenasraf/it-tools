@@ -1,6 +1,6 @@
-import { FileText } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { FileText } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.text-statistics.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./text-statistics.vue'),
   icon: FileText,
   redirectFrom: ['/text-stats'],
-});
+})

@@ -1,6 +1,6 @@
-import { AlignJustified } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { AlignJustified } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.yaml-to-json-converter.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./yaml-to-json.vue'),
   icon: AlignJustified,
   createdAt: new Date('2023-04-10'),
-});
+})

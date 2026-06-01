@@ -1,20 +1,22 @@
 <script lang="ts" setup>
-import _ from 'lodash';
-import { diff } from '../json-diff.models';
-import { DiffRootViewer } from './diff-viewer.models';
-import { useAppTheme } from '@/ui/theme/themes';
+import _ from 'lodash'
+import { diff } from '../json-diff.models'
+import { DiffRootViewer } from './diff-viewer.models'
+import { useAppTheme } from '@/ui/theme/themes'
 
-const props = defineProps<{ leftJson: unknown; rightJson: unknown }>();
-const onlyShowDifferences = ref(false);
-const { leftJson, rightJson } = toRefs(props);
-const appTheme = useAppTheme();
+const props = defineProps<{ leftJson: unknown; rightJson: unknown }>()
+const onlyShowDifferences = ref(false)
+const { leftJson, rightJson } = toRefs(props)
+const appTheme = useAppTheme()
 
 const result = computed(() =>
   diff(leftJson.value, rightJson.value, { onlyShowDifferences: onlyShowDifferences.value }),
-);
+)
 
-const jsonAreTheSame = computed(() => _.isEqual(leftJson.value, rightJson.value));
-const showResults = computed(() => !_.isUndefined(leftJson.value) && !_.isUndefined(rightJson.value));
+const jsonAreTheSame = computed(() => _.isEqual(leftJson.value, rightJson.value))
+const showResults = computed(
+  () => !_.isUndefined(leftJson.value) && !_.isUndefined(rightJson.value),
+)
 </script>
 
 <template>
@@ -26,9 +28,7 @@ const showResults = computed(() => !_.isUndefined(leftJson.value) && !_.isUndefi
     </div>
 
     <c-card data-test-id="diff-result">
-      <div v-if="jsonAreTheSame" text-center op-70>
-        The provided JSONs are the same
-      </div>
+      <div v-if="jsonAreTheSame" text-center op-70>The provided JSONs are the same</div>
       <DiffRootViewer v-else :diff="result" />
     </c-card>
   </div>

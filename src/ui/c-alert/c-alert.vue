@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import { useTheme } from './c-alert.theme';
+import { useTheme } from './c-alert.theme'
 
-const props = withDefaults(defineProps<{ type?: 'warning'; title?: string }>(), { type: 'warning', title: undefined });
-const { type, title } = toRefs(props);
+const props = withDefaults(defineProps<{ type?: 'warning'; title?: string }>(), {
+  type: 'warning',
+  title: undefined,
+})
+const { type, title } = toRefs(props)
 
-const theme = useTheme();
-const variantTheme = computed(() => theme.value[type.value]);
+const theme = useTheme()
+const variantTheme = computed(() => theme.value[type.value])
 </script>
 
 <template>

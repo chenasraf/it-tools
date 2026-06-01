@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Editor } from '@tiptap/vue-3';
+import type { Editor } from '@tiptap/vue-3'
 import {
   ArrowBack,
   ArrowForwardUp,
@@ -17,22 +17,22 @@ import {
   ListNumbers,
   Strikethrough,
   TextWrap,
-} from '@vicons/tabler';
-import type { Component } from 'vue';
-import MenuBarItem from './menu-bar-item.vue';
+} from '@vicons/tabler'
+import type { Component } from 'vue'
+import MenuBarItem from './menu-bar-item.vue'
 
-const props = defineProps<{ editor: Editor }>();
-const { editor } = toRefs(props);
+const props = defineProps<{ editor: Editor }>()
+const { editor } = toRefs(props)
 
 type MenuItem =
   | {
-    icon: Component
-    title: string
-    action: () => void
-    isActive?: () => boolean
-    type: 'button'
-  }
-  | { type: 'divider' };
+      icon: Component
+      title: string
+      action: () => void
+      isActive?: () => boolean
+      type: 'button'
+    }
+  | { type: 'divider' }
 
 const items: MenuItem[] = [
   {
@@ -154,7 +154,7 @@ const items: MenuItem[] = [
     title: 'Redo',
     action: () => editor.value.chain().focus().redo().run(),
   },
-];
+]
 </script>
 
 <template>

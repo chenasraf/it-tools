@@ -1,6 +1,6 @@
-import { Keyboard } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { Keyboard } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.keycode-info.title'),
@@ -24,4 +24,4 @@ export const tool = defineTool({
   ],
   component: () => import('./keycode-info.vue'),
   icon: Keyboard,
-});
+})

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { QRCodeErrorCorrectionLevel } from 'qrcode';
-import { useQRCode } from './useQRCode';
-import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import type { QRCodeErrorCorrectionLevel } from 'qrcode'
+import { useQRCode } from './useQRCode'
+import { useDownloadFileFromBase64 } from '@/composable/downloadBase64'
 
-const foreground = ref('#000000ff');
-const background = ref('#ffffffff');
-const errorCorrectionLevel = ref<QRCodeErrorCorrectionLevel>('medium');
+const foreground = ref('#000000ff')
+const background = ref('#ffffffff')
+const errorCorrectionLevel = ref<QRCodeErrorCorrectionLevel>('medium')
 
-const errorCorrectionLevels = ['low', 'medium', 'quartile', 'high'];
+const errorCorrectionLevels = ['low', 'medium', 'quartile', 'high']
 
-const text = ref('https://it-tools.tech');
+const text = ref('https://it-tools.tech')
 const { qrcode } = useQRCode({
   text,
   color: {
@@ -18,9 +18,9 @@ const { qrcode } = useQRCode({
   },
   errorCorrectionLevel,
   options: { width: 1024 },
-});
+})
 
-const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-code.png' });
+const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-code.png' })
 </script>
 
 <template>
@@ -59,9 +59,7 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
       <n-gi>
         <div flex flex-col items-center gap-3>
           <n-image :src="qrcode" width="200" />
-          <c-button @click="download">
-            Download qr-code
-          </c-button>
+          <c-button @click="download"> Download qr-code </c-button>
         </div>
       </n-gi>
     </n-grid>

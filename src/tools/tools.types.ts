@@ -1,4 +1,4 @@
-import type { Component } from 'vue';
+import type { Component } from 'vue'
 
 export interface Tool {
   name: string
@@ -17,4 +17,4 @@ export interface ToolCategory {
   components: Tool[]
 }
 
-export type ToolWithCategory = Tool & { category: string };
+export type ToolWithCategory = Tool & { category: string }

@@ -1,6 +1,6 @@
-import { LetterX } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { LetterX } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.roman-numeral-converter.title'),
@@ -9,4 +9,4 @@ export const tool = defineTool({
   keywords: ['roman', 'arabic', 'converter', 'X', 'I', 'V', 'L', 'C', 'D', 'M'],
   component: () => import('./roman-numeral-converter.vue'),
   icon: LetterX,
-});
+})

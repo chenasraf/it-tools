@@ -1,4 +1,4 @@
-export type ToDateMapper = (value: string) => Date;
+export type ToDateMapper = (value: string) => Date
 
 export interface DateFormat {
   name: string

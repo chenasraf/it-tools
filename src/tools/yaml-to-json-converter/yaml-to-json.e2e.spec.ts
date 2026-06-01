@@ -1,18 +1,18 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '@playwright/test'
 
 test.describe('Tool - Yaml to json', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/yaml-to-json-converter');
-  });
+    await page.goto('/yaml-to-json-converter')
+  })
 
   test('Has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle('YAML to JSON - IT Tools');
-  });
+    await expect(page).toHaveTitle('YAML to JSON - IT Tools')
+  })
 
   test('Yaml is parsed and output clean json', async ({ page }) => {
-    await page.getByTestId('input').fill('foo: bar\nlist:\n  - item\n  - key: value');
+    await page.getByTestId('input').fill('foo: bar\nlist:\n  - item\n  - key: value')
 
-    const generatedJson = await page.getByTestId('area-content').innerText();
+    const generatedJson = await page.getByTestId('area-content').innerText()
 
     expect(generatedJson.trim()).toEqual(
       `
@@ -26,8 +26,8 @@ test.describe('Tool - Yaml to json', () => {
    ]
 }
    `.trim(),
-    );
-  });
+    )
+  })
 
   test('Yaml is parsed with merge key and output correct json', async ({ page }) => {
     await page.getByTestId('input').fill(`
@@ -45,9 +45,9 @@ test.describe('Tool - Yaml to json', () => {
         name: John
       - { age: 3, <<: *default }
       
-      `);
+      `)
 
-    const generatedJson = await page.getByTestId('area-content').innerText();
+    const generatedJson = await page.getByTestId('area-content').innerText()
 
     expect(generatedJson.trim()).toEqual(
       `
@@ -75,6 +75,6 @@ test.describe('Tool - Yaml to json', () => {
       }
    ]
 }`.trim(),
-    );
-  });
-});
+    )
+  })
+})

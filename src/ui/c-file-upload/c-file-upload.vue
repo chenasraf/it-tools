@@ -1,55 +1,58 @@
 <script lang="ts" setup>
-import _ from 'lodash';
+import _ from 'lodash'
 
-const props = withDefaults(defineProps<{
-  multiple?: boolean
-  accept?: string
-  title?: string
-}>(), {
-  multiple: false,
-  accept: undefined,
-  title: 'Drag and drop files here, or click to select files',
-});
+const props = withDefaults(
+  defineProps<{
+    multiple?: boolean
+    accept?: string
+    title?: string
+  }>(),
+  {
+    multiple: false,
+    accept: undefined,
+    title: 'Drag and drop files here, or click to select files',
+  },
+)
 
 const emit = defineEmits<{
   (event: 'filesUpload', files: File[]): void
   (event: 'fileUpload', file: File): void
-}>();
+}>()
 
-const { multiple } = toRefs(props);
+const { multiple } = toRefs(props)
 
-const isOverDropZone = ref(false);
+const isOverDropZone = ref(false)
 
-const fileInput = ref<HTMLInputElement | null>(null);
+const fileInput = ref<HTMLInputElement | null>(null)
 
 function triggerFileInput() {
-  fileInput.value?.click();
+  fileInput.value?.click()
 }
 
 function handleFileInput(event: Event) {
-  const files = (event.target as HTMLInputElement).files;
+  const files = (event.target as HTMLInputElement).files
 
-  handleUpload(files);
+  handleUpload(files)
 }
 
 function handleDrop(event: DragEvent) {
-  event.preventDefault();
-  const files = event.dataTransfer?.files;
+  event.preventDefault()
+  const files = event.dataTransfer?.files
 
-  handleUpload(files);
+  handleUpload(files)
 }
 
 function handleUpload(files: FileList | null | undefined) {
   if (_.isNil(files) || _.isEmpty(files)) {
-    return;
+    return
   }
 
   if (multiple.value) {
-    emit('filesUpload', Array.from(files));
-    return;
+    emit('filesUpload', Array.from(files))
+    return
   }
 
-  emit('fileUpload', files[0]);
+  emit('fileUpload', files[0])
 }
 </script>
 
@@ -72,7 +75,7 @@ function handleUpload(files: FileList | null | undefined) {
       :multiple="multiple"
       :accept="accept"
       @change="handleFileInput"
-    >
+    />
     <slot>
       <span op-70>
         {{ title }}
@@ -81,15 +84,11 @@ function handleUpload(files: FileList | null | undefined) {
       <!-- separator -->
       <div my-4 w-full flex items-center justify-center op-70>
         <div class="h-1px max-w-100px flex-1 bg-gray-300 op-50" />
-        <div class="mx-2 text-gray-400">
-          or
-        </div>
+        <div class="mx-2 text-gray-400">or</div>
         <div class="h-1px max-w-100px flex-1 bg-gray-300 op-50" />
       </div>
 
-      <c-button>
-        Browse files
-      </c-button>
+      <c-button> Browse files </c-button>
     </slot>
   </div>
 </template>

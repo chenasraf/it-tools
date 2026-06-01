@@ -1,4 +1,4 @@
-import type { OGSchemaType } from '../OGSchemaType.type';
+import type { OGSchemaType } from '../OGSchemaType.type'
 
 export const image: OGSchemaType = {
   name: 'Image',
@@ -28,4 +28,4 @@ export const image: OGSchemaType = {
       key: 'image:height',
     },
   ],
-};
+}

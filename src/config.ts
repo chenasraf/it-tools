@@ -1,4 +1,4 @@
-import { figue } from 'figue';
+import { figue } from 'figue'
 
 export const config = figue({
   app: {
@@ -72,4 +72,4 @@ export const config = figue({
     PACKAGE_VERSION: import.meta.env.PACKAGE_VERSION,
   })
   .validate()
-  .getConfig();
+  .getConfig()

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { UAParser } from 'ua-parser-js';
-import type { UserAgentResultSection } from './user-agent-parser.types';
+import type { UAParser } from 'ua-parser-js'
+import type { UserAgentResultSection } from './user-agent-parser.types'
 
 const props = defineProps<{
   userAgentInfo?: UAParser.IResult
   sections: UserAgentResultSection[]
-}>();
-const { userAgentInfo, sections } = toRefs(props);
+}>()
+const { userAgentInfo, sections } = toRefs(props)
 </script>
 
 <template>
@@ -30,7 +30,9 @@ const { userAgentInfo, sections } = toRefs(props);
           </div>
           <div flex flex-col>
             <span v-for="{ label, getValue, undefinedFallback } in content" :key="label">
-              <span v-if="getValue(userAgentInfo) === undefined" op-70>{{ undefinedFallback }}</span>
+              <span v-if="getValue(userAgentInfo) === undefined" op-70>{{
+                undefinedFallback
+              }}</span>
             </span>
           </div>
         </c-card>

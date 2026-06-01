@@ -1,4 +1,4 @@
-import type { OGSchemaType } from '../OGSchemaType.type';
+import type { OGSchemaType } from '../OGSchemaType.type'
 
 const typeOptions = [
   { label: 'Website', value: 'website' },
@@ -27,7 +27,7 @@ const typeOptions = [
       { label: 'Other video', value: 'video.other' },
     ],
   },
-];
+]
 
 export const website: OGSchemaType = {
   name: 'General information',
@@ -39,7 +39,12 @@ export const website: OGSchemaType = {
       key: 'type',
       options: typeOptions,
     },
-    { type: 'input', label: 'Title', placeholder: 'Enter the title of your website...', key: 'title' },
+    {
+      type: 'input',
+      label: 'Title',
+      placeholder: 'Enter the title of your website...',
+      key: 'title',
+    },
     {
       type: 'input',
       label: 'Description',
@@ -53,4 +58,4 @@ export const website: OGSchemaType = {
       key: 'url',
     },
   ],
-};
+}

@@ -3,20 +3,35 @@ const optionsA = [
   { label: 'Option A', value: 'a' },
   { label: 'Option B', value: 'b' },
   { label: 'Option C', value: 'c' },
-];
+]
 
-const optionsBig = Array.from({ length: 1000 }, (_, i) => ({ label: `Option ${i}`, value: i }));
+const optionsBig = Array.from({ length: 1000 }, (_, i) => ({ label: `Option ${i}`, value: i }))
 
-const sizes = ['small', 'medium', 'large'] as const;
-const value = ref('');
+const sizes = ['small', 'medium', 'large'] as const
+const value = ref('')
 </script>
 
 <template>
   <h2>Sizes</h2>
-  <c-select v-for="size in sizes" :key="size" v-model:value="value" :options="optionsA" :size="size" mb-2 />
+  <c-select
+    v-for="size in sizes"
+    :key="size"
+    v-model:value="value"
+    :options="optionsA"
+    :size="size"
+    mb-2
+  />
 
   <h2>Searchable</h2>
-  <c-select v-for="size in sizes" :key="size" v-model:value="value" :options="optionsA" :size="size" searchable mb-2 />
+  <c-select
+    v-for="size in sizes"
+    :key="size"
+    v-model:value="value"
+    :options="optionsA"
+    :size="size"
+    searchable
+    mb-2
+  />
 
   <h2>Big list</h2>
   <c-select v-model:value="value" :options="optionsBig" searchable />

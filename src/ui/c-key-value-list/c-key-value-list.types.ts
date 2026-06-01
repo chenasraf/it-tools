@@ -6,4 +6,4 @@ export interface CKeyValueListItem {
   showCopyButton?: boolean
 }
 
-export type CKeyValueListItems = CKeyValueListItem[];
+export type CKeyValueListItems = CKeyValueListItem[]

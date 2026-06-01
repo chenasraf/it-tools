@@ -10,4 +10,4 @@ liberapay: # Replace with a single Liberapay username
 issuehunt: # Replace with a single IssueHunt username
 otechie: # Replace with a single Otechie username
 custom:
-  - "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TSH3C3ABGQM22&currency_code=ILS&source=url"
+  - 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TSH3C3ABGQM22&currency_code=ILS&source=url'

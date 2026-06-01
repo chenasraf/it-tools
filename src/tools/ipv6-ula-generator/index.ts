@@ -1,6 +1,6 @@
-import { BuildingFactory } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { BuildingFactory } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.ipv6-ula-generator.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./ipv6-ula-generator.vue'),
   icon: BuildingFactory,
   createdAt: new Date('2023-04-09'),
-});
+})

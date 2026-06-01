@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import _ from 'lodash';
+import _ from 'lodash'
 
-import { useMediaRecorder } from './useMediaRecorder';
+import { useMediaRecorder } from './useMediaRecorder'
 
-interface Media { type: 'image' | 'video'; value: string; createdAt: Date }
+interface Media {
+  type: 'image' | 'video'
+  value: string
+  createdAt: Date
+}
 
 const {
   videoInputs: cameras,
@@ -15,15 +19,15 @@ const {
   requestPermissions: true,
   constraints: { video: true, audio: true },
   onUpdated() {
-    refreshCurrentDevices();
+    refreshCurrentDevices()
   },
-});
+})
 
-const video = ref<HTMLVideoElement>();
-const medias = ref<Media[]>([]);
-const currentCamera = ref(cameras.value[0]?.deviceId);
-const currentMicrophone = ref(microphones.value[0]?.deviceId);
-const permissionCannotBePrompted = ref(false);
+const video = ref<HTMLVideoElement>()
+const medias = ref<Media[]>([])
+const currentCamera = ref(cameras.value[0]?.deviceId)
+const currentMicrophone = ref(microphones.value[0]?.deviceId)
+const permissionCannotBePrompted = ref(false)
 
 const {
   stream,
@@ -36,7 +40,7 @@ const {
     ...(currentMicrophone.value ? { audio: { deviceId: currentMicrophone.value } } : {}),
   })),
   autoSwitch: true,
-});
+})
 
 const {
   isRecordingSupported,
@@ -48,79 +52,77 @@ const {
   resumeRecording,
 } = useMediaRecorder({
   stream,
-});
+})
 
 onRecordAvailable((value) => {
-  medias.value.unshift({ type: 'video', value, createdAt: new Date() });
-});
+  medias.value.unshift({ type: 'video', value, createdAt: new Date() })
+})
 
 function refreshCurrentDevices() {
-  if (_.isNil(currentCamera) || !cameras.value.find(i => i.deviceId === currentCamera.value)) {
-    currentCamera.value = cameras.value[0]?.deviceId;
+  if (_.isNil(currentCamera) || !cameras.value.find((i) => i.deviceId === currentCamera.value)) {
+    currentCamera.value = cameras.value[0]?.deviceId
   }
 
-  if (_.isNil(microphones) || !microphones.value.find(i => i.deviceId === currentMicrophone.value)) {
-    currentMicrophone.value = microphones.value[0]?.deviceId;
+  if (
+    _.isNil(microphones) ||
+    !microphones.value.find((i) => i.deviceId === currentMicrophone.value)
+  ) {
+    currentMicrophone.value = microphones.value[0]?.deviceId
   }
 }
 
 function takeScreenshot() {
   if (!video.value) {
-    return;
+    return
   }
 
-  const canvas = document.createElement('canvas');
-  canvas.width = video.value.videoWidth;
-  canvas.height = video.value.videoHeight;
-  canvas.getContext('2d')?.drawImage(video.value, 0, 0);
-  const image = canvas.toDataURL('image/png');
+  const canvas = document.createElement('canvas')
+  canvas.width = video.value.videoWidth
+  canvas.height = video.value.videoHeight
+  canvas.getContext('2d')?.drawImage(video.value, 0, 0)
+  const image = canvas.toDataURL('image/png')
 
-  medias.value.unshift({ type: 'image', value: image, createdAt: new Date() });
+  medias.value.unshift({ type: 'image', value: image, createdAt: new Date() })
 }
 
 watchEffect(() => {
   if (video.value && stream.value) {
-    video.value.srcObject = stream.value;
+    video.value.srcObject = stream.value
   }
-});
+})
 
-onBeforeUnmount(() => stop());
+onBeforeUnmount(() => stop())
 
 async function requestPermissions() {
   try {
-    await ensurePermissions();
-  }
-  catch (e) {
-    permissionCannotBePrompted.value = true;
+    await ensurePermissions()
+  } catch (e) {
+    permissionCannotBePrompted.value = true
   }
 }
 
 function downloadMedia({ type, value, createdAt }: Media) {
-  const link = document.createElement('a');
-  link.href = value;
-  link.download = `${type}-${createdAt.getTime()}.${type === 'image' ? 'png' : 'webm'}`;
-  link.click();
+  const link = document.createElement('a')
+  link.href = value
+  link.download = `${type}-${createdAt.getTime()}.${type === 'image' ? 'png' : 'webm'}`
+  link.click()
 }
 </script>
 
 <template>
   <div>
-    <c-card v-if="!isSupported">
-      Your browser does not support recording video from camera
-    </c-card>
+    <c-card v-if="!isSupported"> Your browser does not support recording video from camera </c-card>
 
     <c-card v-else-if="!permissionGranted" text-center>
       You need to grant permission to use your camera and microphone
 
       <c-alert v-if="permissionCannotBePrompted" mt-4 text-left>
-        Your browser has blocked permission request or does not support it. You need to grant permission manually in
-        your browser settings (usually the lock icon in the address bar).
+        Your browser has blocked permission request or does not support it. You need to grant
+        permission manually in your browser settings (usually the lock icon in the address bar).
       </c-alert>
 
       <div v-else mt-4 flex justify-center>
-        <c-button @click="requestPermissions">
-          Grant permission
-        </c-button>
+        <c-button @click="requestPermissions"> Grant permission </c-button>
       </div>
     </c-card>
 
@@ -146,9 +148,7 @@ function downloadMedia({ type, value, createdAt }: Media) {
       </div>
 
       <div v-if="!isMediaStreamAvailable" mt-3 flex justify-center>
-        <c-button type="primary" @click="start">
-          Start webcam
-        </c-button>
+        <c-button type="primary" @click="start"> Start webcam </c-button>
       </div>
 
       <div v-else>
@@ -183,16 +183,14 @@ function downloadMedia({ type, value, createdAt }: Media) {
               Stop
             </c-button>
           </div>
-          <div v-else italic op-60>
-            Video recording is not supported in your browser
-          </div>
+          <div v-else italic op-60>Video recording is not supported in your browser</div>
         </div>
       </div>
     </c-card>
 
     <div grid grid-cols-2 mt-5 gap-2>
       <c-card v-for="({ type, value, createdAt }, index) in medias" :key="index">
-        <img v-if="type === 'image'" :src="value" max-h-full w-full alt="screenshot">
+        <img v-if="type === 'image'" :src="value" max-h-full w-full alt="screenshot" />
 
         <video v-else :src="value" controls max-h-full w-full />
 

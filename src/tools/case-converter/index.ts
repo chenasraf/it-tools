@@ -1,6 +1,6 @@
-import { LetterCaseToggle } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { LetterCaseToggle } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.case-converter.title'),
@@ -23,4 +23,4 @@ export const tool = defineTool({
   ],
   component: () => import('./case-converter.vue'),
   icon: LetterCaseToggle,
-});
+})

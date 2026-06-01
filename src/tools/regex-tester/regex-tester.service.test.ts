@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { matchRegex } from './regex-tester.service';
+import { describe, expect, it } from 'vitest'
+import { matchRegex } from './regex-tester.service'
 
 const regexesData = [
   {
@@ -92,15 +92,15 @@ const regexesData = [
       },
     ],
   },
-];
+]
 
 describe('regex-tester', () => {
   for (const reg of regexesData) {
-    const { regex, text, flags, result: expected_result } = reg;
+    const { regex, text, flags, result: expected_result } = reg
     it(`Should matchRegex("${regex}","${text}","${flags}") return correct result`, async () => {
-      const result = matchRegex(regex, text, `${flags}d`);
+      const result = matchRegex(regex, text, `${flags}d`)
 
-      expect(result).to.deep.equal(expected_result);
-    });
+      expect(result).to.deep.equal(expected_result)
+    })
   }
-});
+})

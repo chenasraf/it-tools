@@ -1,26 +1,25 @@
 <script setup lang="ts">
-import InputCopyable from '../../components/InputCopyable.vue';
-import { convertBase } from './integer-base-converter.model';
-import { getErrorMessageIfThrows } from '@/utils/error';
+import InputCopyable from '../../components/InputCopyable.vue'
+import { convertBase } from './integer-base-converter.model'
+import { getErrorMessageIfThrows } from '@/utils/error'
 
 const inputProps = {
-  'labelPosition': 'left',
-  'labelWidth': '170px',
-  'labelAlign': 'right',
-  'readonly': true,
+  labelPosition: 'left',
+  labelWidth: '170px',
+  labelAlign: 'right',
+  readonly: true,
   'mb-2': '',
-} as const;
+} as const
 
-const input = ref('42');
-const inputBase = ref(10);
-const outputBase = ref(42);
+const input = ref('42')
+const inputBase = ref(10)
+const outputBase = ref(42)
 
 function errorlessConvert(...args: Parameters<typeof convertBase>) {
   try {
-    return convertBase(...args);
-  }
-  catch (err) {
-    return '';
+    return convertBase(...args)
+  } catch (err) {
+    return ''
   }
 }
 
@@ -28,16 +27,35 @@ const error = computed(() =>
   getErrorMessageIfThrows(() =>
     convertBase({ value: input.value, fromBase: inputBase.value, toBase: outputBase.value }),
   ),
-);
+)
 </script>
 
 <template>
   <div>
     <c-card>
-      <c-input-text v-model:value="input" label="Input number" placeholder="Put your number here (ex: 42)" label-position="left" label-width="110px" mb-2 label-align="right" />
+      <c-input-text
+        v-model:value="input"
+        label="Input number"
+        placeholder="Put your number here (ex: 42)"
+        label-position="left"
+        label-width="110px"
+        mb-2
+        label-align="right"
+      />
 
-      <n-form-item label="Input base" label-placement="left" label-width="110" :show-feedback="false">
-        <n-input-number v-model:value="inputBase" max="64" min="2" placeholder="Put your input base here (ex: 10)" w-full />
+      <n-form-item
+        label="Input base"
+        label-placement="left"
+        label-width="110"
+        :show-feedback="false"
+      >
+        <n-input-number
+          v-model:value="inputBase"
+          max="64"
+          min="2"
+          placeholder="Put your input base here (ex: 10)"
+          w-full
+        />
       </n-form-item>
 
       <n-alert v-if="error" style="margin-top: 25px" type="error">

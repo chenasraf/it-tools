@@ -1,18 +1,18 @@
-import type { RouteRecordRaw } from 'vue-router';
-import DemoHome from './demo-home.page.vue';
+import type { RouteRecordRaw } from 'vue-router'
+import DemoHome from './demo-home.page.vue'
 
-const demoPages = import.meta.glob('../*/*.demo.vue', { eager: true });
+const demoPages = import.meta.glob('../*/*.demo.vue', { eager: true })
 
 export const demoRoutes = Object.keys(demoPages).map((demoComponentPath) => {
-  const [, , fileName] = demoComponentPath.split('/');
-  const demoComponentName = fileName.split('.').shift();
+  const [, , fileName] = demoComponentPath.split('/')
+  const demoComponentName = fileName.split('.').shift()
 
   return {
     path: demoComponentName,
     name: demoComponentName,
     component: () => import(/* @vite-ignore */ demoComponentPath),
-  } as RouteRecordRaw;
-});
+  } as RouteRecordRaw
+})
 
 export const routes = [
   {
@@ -28,4 +28,4 @@ export const routes = [
     ],
     component: () => import('./demo-wrapper.vue'),
   },
-];
+]

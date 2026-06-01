@@ -1,6 +1,6 @@
-import { Camera } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { Camera } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.camera-recorder.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./camera-recorder.vue'),
   icon: Camera,
   createdAt: new Date('2023-05-15'),
-});
+})

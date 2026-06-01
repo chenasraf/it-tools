@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useAppTheme } from '../theme/themes';
-import { useTheme } from './c-input-text.theme';
-import { generateRandomId } from '@/utils/random';
-import { type UseValidationRule, useValidation } from '@/composable/validation';
+import { useAppTheme } from '../theme/themes'
+import { useTheme } from './c-input-text.theme'
+import { generateRandomId } from '@/utils/random'
+import { type UseValidationRule, useValidation } from '@/composable/validation'
 
 const props = withDefaults(
   defineProps<{
@@ -59,93 +59,117 @@ const props = withDefaults(
     autofocus: false,
     monospace: false,
   },
-);
-const emit = defineEmits(['update:value']);
-const value = useVModel(props, 'value', emit);
-const showPassword = ref(false);
+)
+const emit = defineEmits(['update:value'])
+const value = useVModel(props, 'value', emit)
+const showPassword = ref(false)
 
-const { id, placeholder, label, validationRules, labelPosition, labelWidth, labelAlign, autosize, readonly, disabled, clearable, type, multiline, rows, rawText, autofocus, monospace } = toRefs(props);
+const {
+  id,
+  placeholder,
+  label,
+  validationRules,
+  labelPosition,
+  labelWidth,
+  labelAlign,
+  autosize,
+  readonly,
+  disabled,
+  clearable,
+  type,
+  multiline,
+  rows,
+  rawText,
+  autofocus,
+  monospace,
+} = toRefs(props)
 
-const validation
-  = props.validation
-  ?? useValidation({
+const validation =
+  props.validation ??
+  useValidation({
     rules: validationRules,
     source: value,
     watch: props.validationWatch,
-  });
+  })
 
-const theme = useTheme();
-const appTheme = useAppTheme();
+const theme = useTheme()
+const appTheme = useAppTheme()
 
-const textareaRef = ref<HTMLTextAreaElement>();
-const inputRef = ref<HTMLInputElement>();
-const inputWrapperRef = ref<HTMLElement>();
+const textareaRef = ref<HTMLTextAreaElement>()
+const inputRef = ref<HTMLInputElement>()
+const inputWrapperRef = ref<HTMLElement>()
 
 watch(
   [value, autosize, multiline, inputWrapperRef, textareaRef],
-  () => nextTick(() => {
-    if (props.multiline && autosize.value) {
-      resizeTextarea();
-    }
-  }),
+  () =>
+    nextTick(() => {
+      if (props.multiline && autosize.value) {
+        resizeTextarea()
+      }
+    }),
   { immediate: true },
-);
+)
 
 function resizeTextarea() {
   if (!textareaRef.value || !inputWrapperRef.value) {
-    return;
+    return
   }
 
-  const scrollHeight = textareaRef.value.scrollHeight + 2;
+  const scrollHeight = textareaRef.value.scrollHeight + 2
 
-  inputWrapperRef.value.style.height = `${scrollHeight}px`;
+  inputWrapperRef.value.style.height = `${scrollHeight}px`
 }
 
 const htmlInputType = computed(() => {
   if (props.type === 'password' && !showPassword.value) {
-    return 'password';
+    return 'password'
   }
 
-  return 'text';
-});
+  return 'text'
+})
 
 function focus() {
   if (textareaRef.value) {
-    textareaRef.value.focus();
+    textareaRef.value.focus()
   }
 
   if (inputRef.value) {
-    inputRef.value.focus();
+    inputRef.value.focus()
   }
 }
 
 function blur() {
   if (textareaRef.value) {
-    textareaRef.value.blur?.();
+    textareaRef.value.blur?.()
   }
 
   if (inputRef.value) {
-    inputRef.value.blur?.();
+    inputRef.value.blur?.()
   }
 }
 
 onMounted(() => {
   if (autofocus.value) {
-    focus();
+    focus()
   }
-});
+})
 
 defineExpose({
   inputWrapperRef,
   focus,
   blur,
-});
+})
 </script>
 
 <template>
   <div
     class="c-input-text"
-    :class="{ disabled, 'error': !validation.isValid, 'label-left': labelPosition === 'left', multiline }"
+    :class="{
+      disabled,
+      error: !validation.isValid,
+      'label-left': labelPosition === 'left',
+      multiline,
+    }"
   >
     <label v-if="label" :for="id" class="label"> {{ label }} </label>
 
@@ -192,13 +216,19 @@ defineExpose({
           :autocomplete="autocomplete ?? (rawText ? 'off' : undefined)"
           :autocorrect="autocorrect ?? (rawText ? 'off' : undefined)"
           :spellcheck="spellcheck ?? (rawText ? false : undefined)"
-        >
+        />
 
         <c-button v-if="clearable && value" variant="text" circle size="small" @click="value = ''">
           <icon-mdi-close />
         </c-button>
 
-        <c-button v-if="type === 'password'" variant="text" circle size="small" @click="showPassword = !showPassword">
+        <c-button
+          v-if="type === 'password'"
+          variant="text"
+          circle
+          size="small"
+          @click="showPassword = !showPassword"
+        >
           <icon-mdi-eye v-if="!showPassword" />
           <icon-mdi-eye-off v-if="showPassword" />
         </c-button>

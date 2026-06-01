@@ -54,7 +54,8 @@ export const codesByCategories: {
       {
         code: 202,
         name: 'Accepted',
-        description: 'The request has been accepted for processing, but the processing has not been completed.',
+        description:
+          'The request has been accepted for processing, but the processing has not been completed.',
         type: 'HTTP',
       },
       {
@@ -67,19 +68,22 @@ export const codesByCategories: {
       {
         code: 204,
         name: 'No Content',
-        description: 'The server successfully processed the request and is not returning any content.',
+        description:
+          'The server successfully processed the request and is not returning any content.',
         type: 'HTTP',
       },
       {
         code: 205,
         name: 'Reset Content',
-        description: 'The server indicates to reinitialize the document view which sent this request.',
+        description:
+          'The server indicates to reinitialize the document view which sent this request.',
         type: 'HTTP',
       },
       {
         code: 206,
         name: 'Partial Content',
-        description: 'The server is delivering only part of the resource due to a range header sent by the client.',
+        description:
+          'The server is delivering only part of the resource due to a range header sent by the client.',
         type: 'HTTP',
       },
       {
@@ -123,13 +127,15 @@ export const codesByCategories: {
       {
         code: 302,
         name: 'Found',
-        description: 'Redirect to another URL. This is an example of industry practice contradicting the standard.',
+        description:
+          'Redirect to another URL. This is an example of industry practice contradicting the standard.',
         type: 'HTTP',
       },
       {
         code: 303,
         name: 'See Other',
-        description: 'The response to the request can be found under another URI using a GET method.',
+        description:
+          'The response to the request can be found under another URI using a GET method.',
         type: 'HTTP',
       },
       {
@@ -149,7 +155,8 @@ export const codesByCategories: {
       {
         code: 306,
         name: 'Switch Proxy',
-        description: 'No longer used. Originally meant "Subsequent requests should use the specified proxy."',
+        description:
+          'No longer used. Originally meant "Subsequent requests should use the specified proxy."',
         type: 'HTTP',
       },
       {
@@ -173,7 +180,8 @@ export const codesByCategories: {
       {
         code: 400,
         name: 'Bad Request',
-        description: 'The server cannot or will not process the request due to an apparent client error.',
+        description:
+          'The server cannot or will not process the request due to an apparent client error.',
         type: 'HTTP',
       },
       {
@@ -200,7 +208,8 @@ export const codesByCategories: {
       {
         code: 404,
         name: 'Not Found',
-        description: 'The requested resource could not be found but may be available in the future.',
+        description:
+          'The requested resource could not be found but may be available in the future.',
         type: 'HTTP',
       },
       {
@@ -238,7 +247,8 @@ export const codesByCategories: {
       {
         code: 410,
         name: 'Gone',
-        description: 'Indicates that the resource requested is no longer available and will not be available again.',
+        description:
+          'Indicates that the resource requested is no longer available and will not be available again.',
         type: 'HTTP',
       },
       {
@@ -251,7 +261,8 @@ export const codesByCategories: {
       {
         code: 412,
         name: 'Precondition Failed',
-        description: 'The server does not meet one of the preconditions that the requester put on the request.',
+        description:
+          'The server does not meet one of the preconditions that the requester put on the request.',
         type: 'HTTP',
       },
       {
@@ -269,13 +280,15 @@ export const codesByCategories: {
       {
         code: 415,
         name: 'Unsupported Media Type',
-        description: 'The request entity has a media type which the server or resource does not support.',
+        description:
+          'The request entity has a media type which the server or resource does not support.',
         type: 'HTTP',
       },
       {
         code: 416,
         name: 'Range Not Satisfiable',
-        description: 'The client has asked for a portion of the file, but the server cannot supply that portion.',
+        description:
+          'The client has asked for a portion of the file, but the server cannot supply that portion.',
         type: 'HTTP',
       },
       {
@@ -286,7 +299,7 @@ export const codesByCategories: {
       },
       {
         code: 418,
-        name: 'I\'m a teapot',
+        name: "I'm a teapot",
         description: 'The server refuses the attempt to brew coffee with a teapot.',
         type: 'HTTP',
       },
@@ -299,7 +312,8 @@ export const codesByCategories: {
       {
         code: 422,
         name: 'Unprocessable Entity',
-        description: 'The request was well-formed but was unable to be followed due to semantic errors.',
+        description:
+          'The request was well-formed but was unable to be followed due to semantic errors.',
         type: 'HTTP',
       },
       {
@@ -317,7 +331,8 @@ export const codesByCategories: {
       {
         code: 425,
         name: 'Too Early',
-        description: 'Indicates that the server is unwilling to risk processing a request that might be replayed.',
+        description:
+          'Indicates that the server is unwilling to risk processing a request that might be replayed.',
         type: 'HTTP',
       },
       {
@@ -381,7 +396,8 @@ export const codesByCategories: {
       {
         code: 503,
         name: 'Service Unavailable',
-        description: 'The server is currently unavailable (because it is overloaded or down for maintenance).',
+        description:
+          'The server is currently unavailable (because it is overloaded or down for maintenance).',
         type: 'HTTP',
       },
       {
@@ -400,13 +416,15 @@ export const codesByCategories: {
       {
         code: 506,
         name: 'Variant Also Negotiates',
-        description: 'Transparent content negotiation for the request results in a circular reference.',
+        description:
+          'Transparent content negotiation for the request results in a circular reference.',
         type: 'HTTP',
       },
       {
         code: 507,
         name: 'Insufficient Storage',
-        description: 'The server is unable to store the representation needed to complete the request.',
+        description:
+          'The server is unable to store the representation needed to complete the request.',
         type: 'HTTP',
       },
       {
@@ -429,4 +447,4 @@ export const codesByCategories: {
       },
     ],
   },
-];
+]

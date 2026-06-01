@@ -1,36 +1,36 @@
-import _ from 'lodash';
-import type { ArrayDifference, Difference, ObjectDifference } from '../json-diff.types';
-import { useCopy } from '@/composable/copy';
+import _ from 'lodash'
+import type { ArrayDifference, Difference, ObjectDifference } from '../json-diff.types'
+import { useCopy } from '@/composable/copy'
 
 export function DiffRootViewer({ diff }: { diff: Difference }) {
   return (
     <div class={'diffs-viewer'}>
       <ul>{DiffViewer({ diff, showKeys: false })}</ul>
     </div>
-  );
+  )
 }
 
 function DiffViewer({ diff, showKeys = true }: { diff: Difference; showKeys?: boolean }) {
-  const { type, status } = diff;
+  const { type, status } = diff
 
   if (status === 'updated') {
-    return ComparisonViewer({ diff, showKeys });
+    return ComparisonViewer({ diff, showKeys })
   }
 
   if (type === 'array') {
-    return ChildrenViewer({ diff, showKeys, showChildrenKeys: false, openTag: '[', closeTag: ']' });
+    return ChildrenViewer({ diff, showKeys, showChildrenKeys: false, openTag: '[', closeTag: ']' })
   }
 
   if (type === 'object') {
-    return ChildrenViewer({ diff, showKeys, openTag: '{', closeTag: '}' });
+    return ChildrenViewer({ diff, showKeys, openTag: '{', closeTag: '}' })
   }
 
-  return LineDiffViewer({ diff, showKeys });
+  return LineDiffViewer({ diff, showKeys })
 }
 
 function LineDiffViewer({ diff, showKeys }: { diff: Difference; showKeys?: boolean }) {
-  const { value, key, status, oldValue } = diff;
-  const valueToDisplay = status === 'removed' ? oldValue : value;
+  const { value, key, status, oldValue } = diff
+  const valueToDisplay = status === 'removed' ? oldValue : value
 
   return (
     <li>
@@ -45,11 +45,11 @@ function LineDiffViewer({ diff, showKeys }: { diff: Difference; showKeys?: boole
       </span>
       ,
     </li>
-  );
+  )
 }
 
 function ComparisonViewer({ diff, showKeys }: { diff: Difference; showKeys?: boolean }) {
-  const { value, key, oldValue } = diff;
+  const { value, key, oldValue } = diff
 
   return (
     <li class={'updated-line'}>
@@ -62,7 +62,7 @@ function ComparisonViewer({ diff, showKeys }: { diff: Difference; showKeys?: boo
       {Value({ value: oldValue, status: 'removed' })}
       {Value({ value, status: 'added' })},
     </li>
-  );
+  )
 }
 
 function ChildrenViewer({
@@ -78,7 +78,7 @@ function ChildrenViewer({
   openTag: string
   closeTag: string
 }) {
-  const { children, key, status, type } = diff;
+  const { children, key, status, type } = diff
 
   return (
     <li>
@@ -91,29 +91,31 @@ function ChildrenViewer({
         )}
 
         {openTag}
-        {children.length > 0 && <ul>{children.map(diff => DiffViewer({ diff, showKeys: showChildrenKeys }))}</ul>}
+        {children.length > 0 && (
+          <ul>{children.map((diff) => DiffViewer({ diff, showKeys: showChildrenKeys }))}</ul>
+        )}
         {`${closeTag},`}
       </div>
     </li>
-  );
+  )
 }
 
 function formatValue(value: unknown) {
   if (_.isNull(value)) {
-    return 'null';
+    return 'null'
   }
 
-  return JSON.stringify(value);
+  return JSON.stringify(value)
 }
 
 function Value({ value, status }: { value: unknown; status: string }) {
-  const formatedValue = formatValue(value);
+  const formatedValue = formatValue(value)
 
-  const { copy } = useCopy({ source: formatedValue });
+  const { copy } = useCopy({ source: formatedValue })
 
   return (
     <span class={['value', status]} onClick={() => copy()}>
       {formatedValue}
     </span>
-  );
+  )
 }

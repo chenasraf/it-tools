@@ -1,6 +1,6 @@
-import { Link } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { Link } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.url-encoder.title'),
@@ -9,4 +9,4 @@ export const tool = defineTool({
   keywords: ['url', 'encode', 'decode', 'percent', '%20', 'format'],
   component: () => import('./url-encoder.vue'),
   icon: Link,
-});
+})

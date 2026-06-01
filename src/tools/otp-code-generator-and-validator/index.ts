@@ -1,6 +1,6 @@
-import { DeviceMobile } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { DeviceMobile } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.otp-generator.title'),
@@ -25,4 +25,4 @@ export const tool = defineTool({
   ],
   component: () => import('./otp-code-generator-and-validator.vue'),
   icon: DeviceMobile,
-});
+})

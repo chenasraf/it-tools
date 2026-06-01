@@ -11,8 +11,8 @@ import {
   isValid,
   parseISO,
   parseJSON,
-} from 'date-fns';
-import type { DateFormat, ToDateMapper } from './date-time-converter.types';
+} from 'date-fns'
+import type { DateFormat, ToDateMapper } from './date-time-converter.types'
 import {
   dateToExcelFormat,
   excelFormatToDate,
@@ -25,18 +25,18 @@ import {
   isTimestamp,
   isUTCDateString,
   isUnixTimestamp,
-} from './date-time-converter.models';
-import { withDefaultOnError } from '@/utils/defaults';
-import { useValidation } from '@/composable/validation';
+} from './date-time-converter.models'
+import { withDefaultOnError } from '@/utils/defaults'
+import { useValidation } from '@/composable/validation'
 
-const inputDate = ref('');
+const inputDate = ref('')
 
-const toDate: ToDateMapper = date => new Date(date);
+const toDate: ToDateMapper = (date) => new Date(date)
 
 const formats: DateFormat[] = [
   {
     name: 'JS locale date string',
-    fromDate: date => date.toString(),
+    fromDate: (date) => date.toString(),
     toDate,
     formatMatcher: () => false,
   },
@@ -44,80 +44,79 @@ const formats: DateFormat[] = [
     name: 'ISO 8601',
     fromDate: formatISO,
     toDate: parseISO,
-    formatMatcher: date => isISO8601DateTimeString(date),
+    formatMatcher: (date) => isISO8601DateTimeString(date),
   },
   {
     name: 'ISO 9075',
     fromDate: formatISO9075,
     toDate: parseISO,
-    formatMatcher: date => isISO9075DateString(date),
+    formatMatcher: (date) => isISO9075DateString(date),
   },
   {
     name: 'RFC 3339',
     fromDate: formatRFC3339,
     toDate,
-    formatMatcher: date => isRFC3339DateString(date),
+    formatMatcher: (date) => isRFC3339DateString(date),
   },
   {
     name: 'RFC 7231',
     fromDate: formatRFC7231,
     toDate,
-    formatMatcher: date => isRFC7231DateString(date),
+    formatMatcher: (date) => isRFC7231DateString(date),
   },
   {
     name: 'Unix timestamp',
-    fromDate: date => String(getUnixTime(date)),
-    toDate: sec => fromUnixTime(+sec),
-    formatMatcher: date => isUnixTimestamp(date),
+    fromDate: (date) => String(getUnixTime(date)),
+    toDate: (sec) => fromUnixTime(+sec),
+    formatMatcher: (date) => isUnixTimestamp(date),
   },
   {
     name: 'Timestamp',
-    fromDate: date => String(getTime(date)),
-    toDate: ms => parseJSON(+ms),
-    formatMatcher: date => isTimestamp(date),
+    fromDate: (date) => String(getTime(date)),
+    toDate: (ms) => parseJSON(+ms),
+    formatMatcher: (date) => isTimestamp(date),
   },
   {
     name: 'UTC format',
-    fromDate: date => date.toUTCString(),
+    fromDate: (date) => date.toUTCString(),
     toDate,
-    formatMatcher: date => isUTCDateString(date),
+    formatMatcher: (date) => isUTCDateString(date),
   },
   {
     name: 'Mongo ObjectID',
-    fromDate: date => `${Math.floor(date.getTime() / 1000).toString(16)}0000000000000000`,
-    toDate: objectId => new Date(Number.parseInt(objectId.substring(0, 8), 16) * 1000),
-    formatMatcher: date => isMongoObjectId(date),
+    fromDate: (date) => `${Math.floor(date.getTime() / 1000).toString(16)}0000000000000000`,
+    toDate: (objectId) => new Date(Number.parseInt(objectId.substring(0, 8), 16) * 1000),
+    formatMatcher: (date) => isMongoObjectId(date),
   },
   {
     name: 'Excel date/time',
-    fromDate: date => dateToExcelFormat(date),
+    fromDate: (date) => dateToExcelFormat(date),
     toDate: excelFormatToDate,
     formatMatcher: isExcelFormat,
   },
-];
+]
 
-const formatIndex = ref(6);
-const now = useNow();
+const formatIndex = ref(6)
+const now = useNow()
 
 const normalizedDate = computed(() => {
   if (!inputDate.value) {
-    return now.value;
+    return now.value
   }
 
-  const { toDate } = formats[formatIndex.value];
+  const { toDate } = formats[formatIndex.value]
 
   try {
-    return toDate(inputDate.value);
+    return toDate(inputDate.value)
+  } catch (_ignored) {
+    return undefined
   }
-  catch (_ignored) {
-    return undefined;
-  }
-});
+})
 
 function onDateInputChanged(value: string) {
-  const matchingIndex = formats.findIndex(({ formatMatcher }) => formatMatcher(value));
+  const matchingIndex = formats.findIndex(({ formatMatcher }) => formatMatcher(value))
   if (matchingIndex !== -1) {
-    formatIndex.value = matchingIndex;
+    formatIndex.value = matchingIndex
   }
 }
 
@@ -127,25 +126,25 @@ const validation = useValidation({
   rules: [
     {
       message: 'This date is invalid for this format',
-      validator: value =>
+      validator: (value) =>
         withDefaultOnError(() => {
           if (value === '') {
-            return true;
+            return true
           }
 
-          const maybeDate = formats[formatIndex.value].toDate(value);
-          return isDate(maybeDate) && isValid(maybeDate);
+          const maybeDate = formats[formatIndex.value].toDate(value)
+          return isDate(maybeDate) && isValid(maybeDate)
         }, false),
     },
   ],
-});
+})
 
 function formatDateUsingFormatter(formatter: (date: Date) => string, date?: Date) {
   if (!date || !validation.isValid) {
-    return '';
+    return ''
   }
 
-  return withDefaultOnError(() => formatter(date), '');
+  return withDefaultOnError(() => formatter(date), '')
 }
 </script>
 

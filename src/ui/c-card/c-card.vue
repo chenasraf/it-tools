@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { useTheme } from './c-card.theme';
+import { useTheme } from './c-card.theme'
 
 const props = defineProps<{
   title?: string
-}>();
+}>()
 
-const { title } = toRefs(props);
+const { title } = toRefs(props)
 
-const theme = useTheme();
+const theme = useTheme()
 </script>
 
 <template>

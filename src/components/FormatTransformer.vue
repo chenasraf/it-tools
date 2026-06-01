@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import _ from 'lodash';
-import type { UseValidationRule } from '@/composable/validation';
-import CInputText from '@/ui/c-input-text/c-input-text.vue';
+import _ from 'lodash'
+import type { UseValidationRule } from '@/composable/validation'
+import CInputText from '@/ui/c-input-text/c-input-text.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -22,15 +22,22 @@ const props = withDefaults(
     outputLabel: 'Output',
     outputLanguage: '',
   },
-);
+)
 
-const { transformer, inputValidationRules, inputLabel, outputLabel, outputLanguage, inputPlaceholder, inputDefault }
-  = toRefs(props);
+const {
+  transformer,
+  inputValidationRules,
+  inputLabel,
+  outputLabel,
+  outputLanguage,
+  inputPlaceholder,
+  inputDefault,
+} = toRefs(props)
 
-const inputElement = ref<typeof CInputText>();
+const inputElement = ref<typeof CInputText>()
 
-const input = ref(inputDefault.value);
-const output = computed(() => transformer.value(input.value));
+const input = ref(inputDefault.value)
+const output = computed(() => transformer.value(input.value))
 </script>
 
 <template>
@@ -52,6 +59,10 @@ const output = computed(() => transformer.value(input.value));
     <div mb-5px>
       {{ outputLabel }}
     </div>
-    <textarea-copyable :value="output" :language="outputLanguage" :follow-height-of="inputElement?.inputWrapperRef" />
+    <textarea-copyable
+      :value="output"
+      :language="outputLanguage"
+      :follow-height-of="inputElement?.inputWrapperRef"
+    />
   </div>
 </template>

@@ -1,36 +1,39 @@
 <script setup lang="ts">
-import { getCountries, getCountryCallingCode, parsePhoneNumber } from 'libphonenumber-js/max';
-import lookup from 'country-code-lookup';
+import { getCountries, getCountryCallingCode, parsePhoneNumber } from 'libphonenumber-js/max'
+import lookup from 'country-code-lookup'
 import {
   formatTypeToHumanReadable,
   getDefaultCountryCode,
   getFullCountryName,
-} from './phone-parser-and-formatter.models';
-import { withDefaultOnError } from '@/utils/defaults';
-import { booleanToHumanReadable } from '@/utils/boolean';
-import { useValidation } from '@/composable/validation';
+} from './phone-parser-and-formatter.models'
+import { withDefaultOnError } from '@/utils/defaults'
+import { booleanToHumanReadable } from '@/utils/boolean'
+import { useValidation } from '@/composable/validation'
 
-const rawPhone = ref('');
-const defaultCountryCode = ref(getDefaultCountryCode());
+const rawPhone = ref('')
+const defaultCountryCode = ref(getDefaultCountryCode())
 const validation = useValidation({
   source: rawPhone,
   rules: [
     {
-      validator: value => value === '' || /^[0-9 +\-()]+$/.test(value),
+      validator: (value) => value === '' || /^[0-9 +\-()]+$/.test(value),
       message: 'Invalid phone number',
     },
   ],
-});
+})
 
 const parsedDetails = computed(() => {
   if (!validation.isValid) {
-    return undefined;
+    return undefined
   }
 
-  const parsed = withDefaultOnError(() => parsePhoneNumber(rawPhone.value, defaultCountryCode.value), undefined);
+  const parsed = withDefaultOnError(
+    () => parsePhoneNumber(rawPhone.value, defaultCountryCode.value),
+    undefined,
+  )
 
   if (!parsed) {
-    return undefined;
+    return undefined
   }
 
   return [
@@ -74,18 +77,24 @@ const parsedDetails = computed(() => {
       label: 'RFC3966 format',
       value: parsed.format('RFC3966'),
     },
-  ];
-});
+  ]
+})
 
-const countriesOptions = getCountries().map(code => ({
+const countriesOptions = getCountries().map((code) => ({
   label: `${lookup.byIso(code)?.country || code} (+${getCountryCallingCode(code)})`,
   value: code,
-}));
+}))
 </script>
 
 <template>
   <div>
-    <c-select v-model:value="defaultCountryCode" label="Default country code:" :options="countriesOptions" searchable mb-5 />
+    <c-select
+      v-model:value="defaultCountryCode"
+      label="Default country code:"
+      :options="countriesOptions"
+      searchable
+      mb-5
+    />
 
     <c-input-text
       v-model:value="rawPhone"
@@ -103,9 +112,7 @@ const countriesOptions = getCountries().map(code => ({
           </td>
           <td>
             <span-copyable v-if="value" :value="value" />
-            <span v-else op-70>
-              Unknown
-            </span>
+            <span v-else op-70> Unknown </span>
           </td>
         </tr>
       </tbody>

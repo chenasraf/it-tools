@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useThemeVars } from 'naive-ui';
-import Memo from './git-memo.content.md';
+import { useThemeVars } from 'naive-ui'
+import Memo from './git-memo.content.md'
 
-const themeVars = useThemeVars();
+const themeVars = useThemeVars()
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import { Language } from '@vicons/tabler';
-import { defineTool } from '../tool';
+import { Language } from '@vicons/tabler'
+import { defineTool } from '../tool'
 
 export const tool = defineTool({
   name: 'Regex Tester',
@@ -9,4 +9,4 @@ export const tool = defineTool({
   component: () => import('./regex-tester.vue'),
   icon: Language,
   createdAt: new Date('2024-09-20'),
-});
+})

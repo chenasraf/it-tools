@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-import { type RouteLocationRaw, RouterLink } from 'vue-router';
-import { useTheme } from './c-link.theme';
+import { type RouteLocationRaw, RouterLink } from 'vue-router'
+import { useTheme } from './c-link.theme'
 
 const props = defineProps<{
   href?: string
   to?: RouteLocationRaw
-}>();
+}>()
 
-const { href, to } = toRefs(props);
+const { href, to } = toRefs(props)
 
-const theme = useTheme();
+const theme = useTheme()
 const tag = computed(() => {
   if (href?.value) {
-    return 'a';
+    return 'a'
   }
   if (to?.value) {
-    return RouterLink;
+    return RouterLink
   }
-  return 'span';
-});
+  return 'span'
+})
 </script>
 
 <template>

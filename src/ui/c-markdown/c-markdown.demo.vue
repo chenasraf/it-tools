@@ -10,7 +10,7 @@ mollis blandit, nunc nisl aliquam nunc, vitae aliquam nisl nunc vitae nisl.
 - Sed euismod, nisl quis mollis blandit, nunc nisl aliquam nunc, vitae aliquam nisl nunc vitae nisl.
 
 [it-tools](https://it-tools.tech)
-`;
+`
 </script>
 
 <template>

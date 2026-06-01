@@ -1,5 +1,5 @@
-import { Markdown } from '@vicons/tabler';
-import { defineTool } from '../tool';
+import { Markdown } from '@vicons/tabler'
+import { defineTool } from '../tool'
 
 export const tool = defineTool({
   name: 'Markdown to HTML',
@@ -9,4 +9,4 @@ export const tool = defineTool({
   component: () => import('./markdown-to-html.vue'),
   icon: Markdown,
   createdAt: new Date('2024-08-25'),
-});
+})

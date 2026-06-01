@@ -1,6 +1,6 @@
-import { Lock } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { Lock } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.encryption.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./encryption.vue'),
   icon: Lock,
   redirectFrom: ['/cypher'],
-});
+})

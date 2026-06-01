@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const positions = ['top', 'bottom', 'left', 'right'] as const;
+const positions = ['top', 'bottom', 'left', 'right'] as const
 </script>
 
 <template>
@@ -7,16 +7,12 @@ const positions = ['top', 'bottom', 'left', 'right'] as const;
     <c-tooltip>
       Hover me
 
-      <template #tooltip>
-        Tooltip content
-      </template>
+      <template #tooltip> Tooltip content </template>
     </c-tooltip>
   </div>
 
   <div mt-5>
-    <c-tooltip tooltip="Tooltip content">
-      Hover me
-    </c-tooltip>
+    <c-tooltip tooltip="Tooltip content"> Hover me </c-tooltip>
   </div>
 
   <div mt-5>

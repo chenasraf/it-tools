@@ -1,4 +1,4 @@
-import { defineThemes } from '../theme/theme.models';
+import { defineThemes } from '../theme/theme.models'
 
 export const { useTheme } = defineThemes({
   dark: {
@@ -17,4 +17,4 @@ export const { useTheme } = defineThemes({
       backgroundColor: '#ffffff',
     },
   },
-});
+})

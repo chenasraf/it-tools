@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useThemeVars } from 'naive-ui';
-import Memo from './regex-memo.content.md';
+import { useThemeVars } from 'naive-ui'
+import Memo from './regex-memo.content.md'
 
-const themeVars = useThemeVars();
+const themeVars = useThemeVars()
 </script>
 
 <template>
@@ -22,7 +22,9 @@ const themeVars = useThemeVars();
 ::v-deep(table) {
   border-collapse: collapse;
 }
-::v-deep(table), ::v-deep(td), ::v-deep(th) {
+::v-deep(table),
+::v-deep(td),
+::v-deep(th) {
   border: 1px solid v-bind('themeVars.textColor1');
   padding: 5px;
 }

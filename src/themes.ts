@@ -1,4 +1,4 @@
-import type { GlobalThemeOverrides } from 'naive-ui';
+import type { GlobalThemeOverrides } from 'naive-ui'
 
 export const lightThemeOverrides: GlobalThemeOverrides = {
   Menu: {
@@ -12,7 +12,7 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
       InternalSelectMenu: { height: '500px' },
     },
   },
-};
+}
 
 export const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
@@ -51,4 +51,4 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
     tdColor: '#232323',
     thColor: '#353535',
   },
-};
+}

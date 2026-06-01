@@ -1,0 +1,11 @@
+node_modules
+dist
+coverage
+pnpm-lock.yaml
+.release-please-manifest.json
+auto-imports.d.ts
+components.d.ts
+.eslintrc-auto-import.json
+public
+locales
+CHANGELOG.md

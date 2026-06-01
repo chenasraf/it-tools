@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import db from 'oui-data';
-import { macAddressValidationRules } from '@/utils/macAddress';
-import { useCopy } from '@/composable/copy';
+import db from 'oui-data'
+import { macAddressValidationRules } from '@/utils/macAddress'
+import { useCopy } from '@/composable/copy'
 
-const getVendorValue = (address: string) => address.trim().replace(/[.:-]/g, '').toUpperCase().substring(0, 6);
+function getVendorValue(address: string) {
+  return address.trim().replace(/[.:-]/g, '').toUpperCase().substring(0, 6)
+}
 
-const macAddress = ref('20:37:06:12:34:56');
-const details = computed<string | undefined>(() => (db as Record<string, string>)[getVendorValue(macAddress.value)]);
+const macAddress = ref('20:37:06:12:34:56')
+const details = computed<string | undefined>(
+  () => (db as Record<string, string>)[getVendorValue(macAddress.value)],
+)
 
-const { copy } = useCopy({ source: () => details.value ?? '', text: 'Vendor info copied to the clipboard' });
+const { copy } = useCopy({
+  source: () => details.value ?? '',
+  text: 'Vendor info copied to the clipboard',
+})
 </script>
 
 <template>
@@ -27,9 +34,7 @@ const { copy } = useCopy({ source: () => details.value ?? '', text: 'Vendor info
       mb-5
     />
 
-    <div mb-5px>
-      Vendor info:
-    </div>
+    <div mb-5px>Vendor info:</div>
     <c-card mb-5>
       <div v-if="details">
         <div v-for="(detail, index) of details.split('\n')" :key="index">
@@ -37,15 +42,11 @@ const { copy } = useCopy({ source: () => details.value ?? '', text: 'Vendor info
         </div>
       </div>
 
-      <div v-else italic op-60>
-        Unknown vendor for this address
-      </div>
+      <div v-else italic op-60>Unknown vendor for this address</div>
     </c-card>
 
     <div flex justify-center>
-      <c-button :disabled="!details" @click="copy()">
-        Copy vendor info
-      </c-button>
+      <c-button :disabled="!details" @click="copy()"> Copy vendor info </c-button>
     </div>
   </div>
 </template>

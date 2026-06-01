@@ -1,6 +1,6 @@
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
-import Bank from '~icons/mdi/bank';
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
+import Bank from '~icons/mdi/bank'
 
 export const tool = defineTool({
   name: translate('tools.iban-validator-and-parser.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./iban-validator-and-parser.vue'),
   icon: Bank,
   createdAt: new Date('2023-08-26'),
-});
+})

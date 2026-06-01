@@ -1,6 +1,6 @@
-import { EyeOff } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { EyeOff } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.hash-text.title'),
@@ -24,4 +24,4 @@ export const tool = defineTool({
   component: () => import('./hash-text.vue'),
   icon: EyeOff,
   redirectFrom: ['/hash'],
-});
+})

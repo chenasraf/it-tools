@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { tryOnBeforeUnmount, useVModel } from '@vueuse/core';
-import { Editor, EditorContent } from '@tiptap/vue-3';
-import StarterKit from '@tiptap/starter-kit';
-import { useThemeVars } from 'naive-ui';
-import MenuBar from './menu-bar.vue';
+import { tryOnBeforeUnmount, useVModel } from '@vueuse/core'
+import { Editor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
+import { useThemeVars } from 'naive-ui'
+import MenuBar from './menu-bar.vue'
 
-const props = defineProps<{ html: string }>();
-const emit = defineEmits(['update:html']);
-const themeVars = useThemeVars();
-const html = useVModel(props, 'html', emit);
+const props = defineProps<{ html: string }>()
+const emit = defineEmits(['update:html'])
+const themeVars = useThemeVars()
+const html = useVModel(props, 'html', emit)
 
 const editor = new Editor({
   content: html.value,
   extensions: [StarterKit],
-});
+})
 
-editor.on('update', ({ editor }) => emit('update:html', editor.getHTML()));
+editor.on('update', ({ editor }) => emit('update:html', editor.getHTML()))
 
 tryOnBeforeUnmount(() => {
-  editor.destroy();
-});
+  editor.destroy()
+})
 </script>
 
 <template>

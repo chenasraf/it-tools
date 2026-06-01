@@ -1,5 +1,5 @@
-import { Braces } from '@vicons/tabler';
-import { defineTool } from '../tool';
+import { Braces } from '@vicons/tabler'
+import { defineTool } from '../tool'
 
 export const tool = defineTool({
   name: 'XML to JSON',
@@ -9,4 +9,4 @@ export const tool = defineTool({
   component: () => import('./xml-to-json.vue'),
   icon: Braces,
   createdAt: new Date('2024-08-09'),
-});
+})

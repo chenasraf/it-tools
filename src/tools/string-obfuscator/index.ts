@@ -1,6 +1,6 @@
-import { EyeOff } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { EyeOff } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.string-obfuscator.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./string-obfuscator.vue'),
   icon: EyeOff,
   createdAt: new Date('2023-08-16'),
-});
+})

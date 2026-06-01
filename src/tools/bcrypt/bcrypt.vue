@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { compareSync, hashSync } from 'bcryptjs';
-import { useThemeVars } from 'naive-ui';
-import { useCopy } from '@/composable/copy';
+import { compareSync, hashSync } from 'bcryptjs'
+import { useThemeVars } from 'naive-ui'
+import { useCopy } from '@/composable/copy'
 
-const themeVars = useThemeVars();
+const themeVars = useThemeVars()
 
-const input = ref('');
-const saltCount = ref(10);
-const hashed = computed(() => hashSync(input.value, saltCount.value));
-const { copy } = useCopy({ source: hashed, text: 'Hashed string copied to the clipboard' });
+const input = ref('')
+const saltCount = ref(10)
+const hashed = computed(() => hashSync(input.value, saltCount.value))
+const { copy } = useCopy({ source: hashed, text: 'Hashed string copied to the clipboard' })
 
-const compareString = ref('');
-const compareHash = ref('');
-const compareMatch = computed(() => compareSync(compareString.value, compareHash.value));
+const compareString = ref('')
+const compareHash = ref('')
+const compareMatch = computed(() => compareSync(compareString.value, compareHash.value))
 </script>
 
 <template>
@@ -28,22 +28,30 @@ const compareMatch = computed(() => compareSync(compareString.value, compareHash
       mb-2
     />
     <n-form-item label="Salt count: " label-placement="left" label-width="120">
-      <n-input-number v-model:value="saltCount" placeholder="Salt rounds..." :max="100" :min="0" w-full />
+      <n-input-number
+        v-model:value="saltCount"
+        placeholder="Salt rounds..."
+        :max="100"
+        :min="0"
+        w-full
+      />
     </n-form-item>
 
     <c-input-text :value="hashed" readonly text-center />
 
     <div mt-5 flex justify-center>
-      <c-button @click="copy()">
-        Copy hash
-      </c-button>
+      <c-button @click="copy()"> Copy hash </c-button>
     </div>
   </c-card>
 
   <c-card title="Compare string with hash">
     <n-form label-width="120">
       <n-form-item label="Your string: " label-placement="left">
-        <c-input-text v-model:value="compareString" placeholder="Your string to compare..." raw-text />
+        <c-input-text
+          v-model:value="compareString"
+          placeholder="Your string to compare..."
+          raw-text
+        />
       </n-form-item>
       <n-form-item label="Your hash: " label-placement="left">
         <c-input-text v-model:value="compareHash" placeholder="Your hash to compare..." raw-text />

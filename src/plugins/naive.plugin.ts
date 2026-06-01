@@ -1,3 +1,3 @@
-import { create } from 'naive-ui';
+import { create } from 'naive-ui'
 
-export const naive = create();
+export const naive = create()

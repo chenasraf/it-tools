@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import markdownit from 'markdown-it';
-import TextareaCopyable from '@/components/TextareaCopyable.vue';
+import markdownit from 'markdown-it'
+import TextareaCopyable from '@/components/TextareaCopyable.vue'
 
-const inputMarkdown = ref('');
+const inputMarkdown = ref('')
 const outputHtml = computed(() => {
-  const md = markdownit();
-  return md.render(inputMarkdown.value);
-});
+  const md = markdownit()
+  return md.render(inputMarkdown.value)
+})
 
 function printHtml() {
-  const w = window.open();
+  const w = window.open()
   if (w === null) {
-    return;
+    return
   }
-  w.document.body.innerHTML = outputHtml.value;
-  w.print();
+  w.document.body.innerHTML = outputHtml.value
+  w.print()
 }
 </script>
 
@@ -22,7 +22,8 @@ function printHtml() {
   <div>
     <c-input-text
       v-model:value="inputMarkdown"
-      multiline raw-text
+      multiline
+      raw-text
       placeholder="Your Markdown content..."
       rows="8"
       autofocus
@@ -36,9 +37,7 @@ function printHtml() {
     </n-form-item>
 
     <div flex justify-center>
-      <n-button @click="printHtml">
-        Print as PDF
-      </n-button>
+      <n-button @click="printHtml"> Print as PDF </n-button>
     </div>
   </div>
 </template>

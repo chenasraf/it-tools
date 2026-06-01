@@ -1,14 +1,17 @@
-import { noop } from 'lodash';
+import { noop } from 'lodash'
 
-import Plausible from 'plausible-tracker';
-import type { App } from 'vue';
-import { config } from '@/config';
+import Plausible from 'plausible-tracker'
+import type { App } from 'vue'
+import { config } from '@/config'
 
-function createFakePlausibleInstance(): Pick<ReturnType<typeof Plausible>, 'trackEvent' | 'enableAutoPageviews'> {
+function createFakePlausibleInstance(): Pick<
+  ReturnType<typeof Plausible>,
+  'trackEvent' | 'enableAutoPageviews'
+> {
   return {
     trackEvent: noop,
     enableAutoPageviews: () => noop,
-  };
+  }
 }
 
 function createPlausibleInstance({
@@ -22,17 +25,17 @@ function createPlausibleInstance({
   }
 }) {
   if (config.isTrackerEnabled) {
-    return Plausible(config);
+    return Plausible(config)
   }
 
-  return createFakePlausibleInstance();
+  return createFakePlausibleInstance()
 }
 
 export const plausible = {
   install: (app: App) => {
-    const plausible = createPlausibleInstance({ config: config.plausible });
-    plausible.enableAutoPageviews();
+    const plausible = createPlausibleInstance({ config: config.plausible })
+    plausible.enableAutoPageviews()
 
-    app.provide('plausible', plausible);
+    app.provide('plausible', plausible)
   },
-};
+}

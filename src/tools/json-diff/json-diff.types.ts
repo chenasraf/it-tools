@@ -1,4 +1,4 @@
-export type DifferenceStatus = 'added' | 'removed' | 'updated' | 'unchanged' | 'children-updated';
+export type DifferenceStatus = 'added' | 'removed' | 'updated' | 'unchanged' | 'children-updated'
 
 export interface ObjectDifference {
   key: string | number
@@ -26,4 +26,4 @@ export interface ArrayDifference {
   value: unknown
 }
 
-export type Difference = ObjectDifference | ValueDifference | ArrayDifference;
+export type Difference = ObjectDifference | ValueDifference | ArrayDifference

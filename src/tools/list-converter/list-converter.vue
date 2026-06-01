@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useStorage } from '@vueuse/core';
-import { convert } from './list-converter.models';
-import type { ConvertOptions } from './list-converter.types';
+import { useStorage } from '@vueuse/core'
+import { convert } from './list-converter.models'
+import type { ConvertOptions } from './list-converter.types'
 
 const sortOrderOptions = [
   {
@@ -14,7 +14,7 @@ const sortOrderOptions = [
     value: 'desc',
     disabled: false,
   },
-];
+]
 
 const conversionConfig = useStorage<ConvertOptions>('list-converter:conversionConfig', {
   lowerCase: false,
@@ -28,10 +28,10 @@ const conversionConfig = useStorage<ConvertOptions>('list-converter:conversionCo
   reverseList: false,
   sortList: null,
   separator: ', ',
-});
+})
 
 function transformer(value: string) {
-  return convert(value, conversionConfig.value);
+  return convert(value, conversionConfig.value)
 }
 </script>
 
@@ -41,11 +41,26 @@ function transformer(value: string) {
       <c-card>
         <div flex>
           <div>
-            <n-form-item label="Trim list items" label-placement="left" label-width="150" :show-feedback="false" mb-2>
+            <n-form-item
+              label="Trim list items"
+              label-placement="left"
+              label-width="150"
+              :show-feedback="false"
+              mb-2
+            >
               <n-switch v-model:value="conversionConfig.trimItems" />
             </n-form-item>
-            <n-form-item label="Remove duplicates" label-placement="left" label-width="150" :show-feedback="false" mb-2>
-              <n-switch v-model:value="conversionConfig.removeDuplicates" data-test-id="removeDuplicates" />
+            <n-form-item
+              label="Remove duplicates"
+              label-placement="left"
+              label-width="150"
+              :show-feedback="false"
+              mb-2
+            >
+              <n-switch
+                v-model:value="conversionConfig.removeDuplicates"
+                data-test-id="removeDuplicates"
+              />
             </n-form-item>
             <n-form-item
               label="Convert to lowercase"
@@ -56,7 +71,13 @@ function transformer(value: string) {
             >
               <n-switch v-model:value="conversionConfig.lowerCase" />
             </n-form-item>
-            <n-form-item label="Keep line breaks" label-placement="left" label-width="150" :show-feedback="false" mb-2>
+            <n-form-item
+              label="Keep line breaks"
+              label-placement="left"
+              label-width="150"
+              :show-feedback="false"
+              mb-2
+            >
               <n-switch v-model:value="conversionConfig.keepLineBreaks" />
             </n-form-item>
           </div>
@@ -85,7 +106,13 @@ function transformer(value: string) {
               placeholder=","
             />
 
-            <n-form-item label="Wrap item" label-placement="left" label-width="120" :show-feedback="false" mb-2>
+            <n-form-item
+              label="Wrap item"
+              label-placement="left"
+              label-width="120"
+              :show-feedback="false"
+              mb-2
+            >
               <c-input-text
                 v-model:value="conversionConfig.itemPrefix"
                 placeholder="Item prefix"
@@ -97,7 +124,13 @@ function transformer(value: string) {
                 test-id="itemSuffix"
               />
             </n-form-item>
-            <n-form-item label="Wrap list" label-placement="left" label-width="120" :show-feedback="false" mb-2>
+            <n-form-item
+              label="Wrap list"
+              label-placement="left"
+              label-width="120"
+              :show-feedback="false"
+              mb-2
+            >
               <c-input-text
                 v-model:value="conversionConfig.listPrefix"
                 placeholder="List prefix"

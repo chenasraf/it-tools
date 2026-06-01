@@ -1,4 +1,4 @@
-import type { OGSchemaType } from '../OGSchemaType.type';
+import type { OGSchemaType } from '../OGSchemaType.type'
 
 export const musicAlbum: OGSchemaType = {
   name: 'Album details',
@@ -16,7 +16,12 @@ export const musicAlbum: OGSchemaType = {
       key: 'music:song:track',
       placeholder: 'The same as music:album:track but in reverse...',
     },
-    { type: 'input', label: 'Musician', key: 'music:musician', placeholder: 'The musician that made this song...' },
+    {
+      type: 'input',
+      label: 'Musician',
+      key: 'music:musician',
+      placeholder: 'The musician that made this song...',
+    },
     {
       type: 'input',
       label: 'Release date',
@@ -24,4 +29,4 @@ export const musicAlbum: OGSchemaType = {
       placeholder: 'The date the album was released...',
     },
   ],
-};
+}

@@ -1,37 +1,49 @@
 <script setup lang="ts">
-import { IconDragDrop, IconHeart } from '@tabler/icons-vue';
-import { useHead } from '@vueuse/head';
-import { computed } from 'vue';
-import Draggable from 'vuedraggable';
-import ColoredCard from '../components/ColoredCard.vue';
-import ToolCard from '../components/ToolCard.vue';
-import { useToolStore } from '@/tools/tools.store';
-import { config } from '@/config';
+import { IconDragDrop, IconHeart } from '@tabler/icons-vue'
+import { useHead } from '@vueuse/head'
+import { computed } from 'vue'
+import Draggable from 'vuedraggable'
+import ColoredCard from '../components/ColoredCard.vue'
+import ToolCard from '../components/ToolCard.vue'
+import { useToolStore } from '@/tools/tools.store'
+import { config } from '@/config'
 
-const toolStore = useToolStore();
+const toolStore = useToolStore()
 
-useHead({ title: 'IT Tools - Handy online tools for developers' });
-const { t } = useI18n();
+useHead({ title: 'IT Tools - Handy online tools for developers' })
+const { t } = useI18n()
 
-const favoriteTools = computed(() => toolStore.favoriteTools);
+const favoriteTools = computed(() => toolStore.favoriteTools)
 
 // Update favorite tools order when drag is finished
 function onUpdateFavoriteTools() {
-  toolStore.updateFavoriteTools(favoriteTools.value); // Update the store with the new order
+  toolStore.updateFavoriteTools(favoriteTools.value) // Update the store with the new order
 }
 </script>
 
 <template>
   <div class="pt-50px">
     <div class="grid-wrapper">
-      <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div
+        class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
+      >
         <ColoredCard v-if="config.showBanner" :title="$t('home.follow.title')" :icon="IconHeart">
           {{ $t('home.follow.p1') }}
-          <a href="https://github.com/chenasraf/it-tools" rel="noopener" target="_blank"
-            :aria-label="$t('home.follow.githubRepository')">GitHub</a>
+          <a
+            href="https://github.com/chenasraf/it-tools"
+            rel="noopener"
+            target="_blank"
+            :aria-label="$t('home.follow.githubRepository')"
+            >GitHub</a
+          >
           {{ $t('home.follow.p2') }}
-          <a href="https://x.com/kumo_gami" rel="noopener" target="_blank"
-            :aria-label="$t('home.follow.twitterXAccount')">X</a>.
+          <a
+            href="https://x.com/kumo_gami"
+            rel="noopener"
+            target="_blank"
+            :aria-label="$t('home.follow.twitterXAccount')"
+            >X</a
+          >.
           {{ $t('home.follow.thankYou') }}
           <n-icon :component="IconHeart" />
         </ColoredCard>
@@ -45,9 +57,13 @@ function onUpdateFavoriteTools() {
               <n-icon :component="IconDragDrop" size="18" />
             </c-tooltip>
           </h3>
-          <Draggable :list="favoriteTools"
+          <Draggable
+            :list="favoriteTools"
             class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
-            ghost-class="ghost-favorites-draggable" item-key="name" @end="onUpdateFavoriteTools">
+            ghost-class="ghost-favorites-draggable"
+            item-key="name"
+            @end="onUpdateFavoriteTools"
+          >
             <template #item="{ element: tool }">
               <ToolCard :tool="tool" />
             </template>
@@ -59,7 +75,9 @@ function onUpdateFavoriteTools() {
         <h3 class="mb-5px mt-25px text-neutral-400 font-500">
           {{ t('home.categories.newestTools') }}
         </h3>
-        <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
+        <div
+          class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
+        >
           <ToolCard v-for="tool in toolStore.newTools" :key="tool.name" :tool="tool" />
         </div>
       </div>
@@ -67,7 +85,9 @@ function onUpdateFavoriteTools() {
       <h3 class="mb-5px mt-25px text-neutral-400 font-500">
         {{ $t('home.categories.allTools') }}
       </h3>
-      <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div
+        class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
+      >
         <ToolCard v-for="tool in toolStore.tools" :key="tool.name" :tool="tool" />
       </div>
     </div>
@@ -107,7 +127,7 @@ function onUpdateFavoriteTools() {
 
   100% {
     opacity: 0.4;
-    transform: scale(1.0);
+    transform: scale(1);
   }
 }
 </style>

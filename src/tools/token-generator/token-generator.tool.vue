@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { createToken } from './token-generator.service';
-import { useCopy } from '@/composable/copy';
-import { useQueryParam } from '@/composable/queryParams';
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { createToken } from './token-generator.service'
+import { useCopy } from '@/composable/copy'
+import { useQueryParam } from '@/composable/queryParams'
+import { computedRefreshable } from '@/composable/computedRefreshable'
 
-const length = useQueryParam({ name: 'length', defaultValue: 64 });
-const withUppercase = useQueryParam({ name: 'uppercase', defaultValue: true });
-const withLowercase = useQueryParam({ name: 'lowercase', defaultValue: true });
-const withNumbers = useQueryParam({ name: 'numbers', defaultValue: true });
-const withSymbols = useQueryParam({ name: 'symbols', defaultValue: false });
-const { t } = useI18n();
+const length = useQueryParam({ name: 'length', defaultValue: 64 })
+const withUppercase = useQueryParam({ name: 'uppercase', defaultValue: true })
+const withLowercase = useQueryParam({ name: 'lowercase', defaultValue: true })
+const withNumbers = useQueryParam({ name: 'numbers', defaultValue: true })
+const withSymbols = useQueryParam({ name: 'symbols', defaultValue: false })
+const { t } = useI18n()
 
 const [token, refreshToken] = computedRefreshable(() =>
   createToken({
@@ -19,9 +19,9 @@ const [token, refreshToken] = computedRefreshable(() =>
     withNumbers: withNumbers.value,
     withSymbols: withSymbols.value,
   }),
-);
+)
 
-const { copy } = useCopy({ source: token, text: t('tools.token-generator.copied') });
+const { copy } = useCopy({ source: token, text: t('tools.token-generator.copied') })
 </script>
 
 <template>
@@ -51,7 +51,10 @@ const { copy } = useCopy({ source: token, text: t('tools.token-generator.copied'
         </div>
       </n-form>
 
-      <n-form-item :label="`${t('tools.token-generator.length')} (${length})`" label-placement="left">
+      <n-form-item
+        :label="`${t('tools.token-generator.length')} (${length})`"
+        label-placement="left"
+      >
         <n-slider v-model:value="length" :step="1" :min="1" :max="512" />
       </n-form-item>
 

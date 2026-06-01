@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
-import { convert } from './list-converter.models';
-import type { ConvertOptions } from './list-converter.types';
+import { describe, expect, it } from 'vitest'
+import { convert } from './list-converter.models'
+import type { ConvertOptions } from './list-converter.types'
 
 describe('list-converter', () => {
   describe('convert', () => {
@@ -17,7 +17,7 @@ describe('list-converter', () => {
         sortList: null,
         lowerCase: false,
         keepLineBreaks: false,
-      };
+      }
       const input = `
         1
         2
@@ -25,9 +25,9 @@ describe('list-converter', () => {
         3
         3
         4
-        `;
-      expect(convert(input, options)).toEqual('"1", "2", "3", "4"');
-    });
+        `
+      expect(convert(input, options)).toEqual('"1", "2", "3", "4"')
+    })
 
     it('should return an empty value for an empty input', () => {
       const options: ConvertOptions = {
@@ -42,9 +42,9 @@ describe('list-converter', () => {
         sortList: null,
         lowerCase: false,
         keepLineBreaks: false,
-      };
-      expect(convert('', options)).toEqual('');
-    });
+      }
+      expect(convert('', options)).toEqual('')
+    })
 
     it('should keep line breaks', () => {
       const options: ConvertOptions = {
@@ -59,18 +59,18 @@ describe('list-converter', () => {
         removeDuplicates: false,
         reverseList: false,
         sortList: null,
-      };
+      }
       const input = `
         1
         2
         3
-        `;
+        `
       const expected = `<ul>
 <li>1</li>
 <li>2</li>
 <li>3</li>
-</ul>`;
-      expect(convert(input, options)).toEqual(expected);
-    });
-  });
-});
+</ul>`
+      expect(convert(input, options)).toEqual(expected)
+    })
+  })
+})

@@ -1,6 +1,6 @@
-import { Code } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { Code } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.html-entities.title'),
@@ -9,4 +9,4 @@ export const tool = defineTool({
   keywords: ['html', 'entities', 'escape', 'unescape', 'special', 'characters', 'tags'],
   component: () => import('./html-entities.vue'),
   icon: Code,
-});
+})

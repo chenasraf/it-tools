@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import {
-  EAPMethods,
-  EAPPhase2Methods,
-  useWifiQRCode,
-} from './useQRCode';
-import { useDownloadFileFromBase64 } from '@/composable/downloadBase64';
+import { EAPMethods, EAPPhase2Methods, useWifiQRCode } from './useQRCode'
+import { useDownloadFileFromBase64 } from '@/composable/downloadBase64'
 
-const foreground = ref('#000000ff');
-const background = ref('#ffffffff');
+const foreground = ref('#000000ff')
+const background = ref('#ffffffff')
 
-const ssid = ref();
-const password = ref();
-const eapMethod = ref();
-const isHiddenSSID = ref(false);
-const eapAnonymous = ref(false);
-const eapIdentity = ref();
-const eapPhase2Method = ref();
+const ssid = ref()
+const password = ref()
+const eapMethod = ref()
+const isHiddenSSID = ref(false)
+const eapAnonymous = ref(false)
+const eapIdentity = ref()
+const eapPhase2Method = ref()
 
 const { qrcode, encryption } = useWifiQRCode({
   ssid,
@@ -30,9 +26,9 @@ const { qrcode, encryption } = useWifiQRCode({
     foreground,
   },
   options: { width: 1024 },
-});
+})
 
-const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-code.png' });
+const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-code.png' })
 </script>
 
 <template>
@@ -78,9 +74,7 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
             placeholder="Your WiFi SSID..."
             mb-6
           />
-          <n-checkbox v-model:checked="isHiddenSSID">
-            Hidden SSID
-          </n-checkbox>
+          <n-checkbox v-model:checked="isHiddenSSID"> Hidden SSID </n-checkbox>
         </div>
         <c-input-text
           v-if="encryption !== 'nopass'"
@@ -103,7 +97,8 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
           label-width="130px"
           label-align="right"
           :options="EAPMethods.map((method) => ({ label: method, value: method }))"
-          searchable mb-4
+          searchable
+          mb-4
         />
         <div v-if="encryption === 'WPA2-EAP'" class="mb-6 flex flex-row items-center gap-2">
           <c-input-text
@@ -117,9 +112,7 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
             placeholder="Your EAP Identity..."
             mb-6
           />
-          <n-checkbox v-model:checked="eapAnonymous">
-            Anonymous?
-          </n-checkbox>
+          <n-checkbox v-model:checked="eapAnonymous"> Anonymous? </n-checkbox>
         </div>
         <c-select
           v-if="encryption === 'WPA2-EAP'"
@@ -129,7 +122,8 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
           label-width="130px"
           label-align="right"
           :options="EAPPhase2Methods.map((method) => ({ label: method, value: method }))"
-          searchable mb-4
+          searchable
+          mb-4
         />
         <n-form label-width="130" label-placement="left">
           <n-form-item label="Foreground color:">
@@ -142,10 +136,8 @@ const { download } = useDownloadFileFromBase64({ source: qrcode, filename: 'qr-c
       </div>
       <div v-if="qrcode">
         <div flex flex-col items-center gap-3>
-          <img alt="wifi-qrcode" :src="qrcode" width="200">
-          <c-button @click="download">
-            Download qr-code
-          </c-button>
+          <img alt="wifi-qrcode" :src="qrcode" width="200" />
+          <c-button @click="download"> Download qr-code </c-button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { defineThemes } from './theme.models';
+import { defineThemes } from './theme.models'
 
 export const { themes: appThemes, useTheme: useAppTheme } = defineThemes({
   light: {
@@ -73,4 +73,4 @@ export const { themes: appThemes, useTheme: useAppTheme } = defineThemes({
       colorFaded: '#e8808029',
     },
   },
-});
+})

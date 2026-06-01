@@ -1,4 +1,4 @@
-import { randFromArray } from '@/utils/random';
+import { randFromArray } from '@/utils/random'
 
 const vocabulary = [
   'a',
@@ -176,15 +176,15 @@ const vocabulary = [
   'viverra',
   'volutpat',
   'vulputate',
-];
-const firstSentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+]
+const firstSentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 
 function generateSentence(length: number) {
   const sentence = Array.from({ length })
     .map(() => randFromArray(vocabulary))
-    .join(' ');
+    .join(' ')
 
-  return `${sentence.charAt(0).toUpperCase() + sentence.slice(1)}.`;
+  return `${sentence.charAt(0).toUpperCase() + sentence.slice(1)}.`
 }
 
 export function generateLoremIpsum({
@@ -202,15 +202,15 @@ export function generateLoremIpsum({
 }) {
   const paragraphs = Array.from({ length: paragraphCount }).map(() =>
     Array.from({ length: sentencePerParagraph }).map(() => generateSentence(wordCount)),
-  );
+  )
 
   if (startWithLoremIpsum) {
-    paragraphs[0][0] = firstSentence;
+    paragraphs[0][0] = firstSentence
   }
 
   if (asHTML) {
-    return `<p>${paragraphs.map(s => s.join(' ')).join('</p>\n\n<p>')}</p>`;
+    return `<p>${paragraphs.map((s) => s.join(' ')).join('</p>\n\n<p>')}</p>`
   }
 
-  return paragraphs.map(s => s.join(' ')).join('\n\n');
+  return paragraphs.map((s) => s.join(' ')).join('\n\n')
 }

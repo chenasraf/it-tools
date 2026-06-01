@@ -1,6 +1,6 @@
-import { List } from '@vicons/tabler';
-import { defineTool } from '../tool';
-import { translate } from '@/plugins/i18n.plugin';
+import { List } from '@vicons/tabler'
+import { defineTool } from '../tool'
+import { translate } from '@/plugins/i18n.plugin'
 
 export const tool = defineTool({
   name: translate('tools.list-converter.title'),
@@ -10,4 +10,4 @@ export const tool = defineTool({
   component: () => import('./list-converter.vue'),
   icon: List,
   createdAt: new Date('2023-05-07'),
-});
+})

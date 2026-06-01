@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { evaluate } from 'mathjs';
+import { evaluate } from 'mathjs'
 
-import { withDefaultOnError } from '@/utils/defaults';
+import { withDefaultOnError } from '@/utils/defaults'
 
-const expression = ref('');
+const expression = ref('')
 
-const result = computed(() => withDefaultOnError(() => evaluate(expression.value) ?? '', ''));
+const result = computed(() => withDefaultOnError(() => evaluate(expression.value) ?? '', ''))
 </script>
 
 <template>

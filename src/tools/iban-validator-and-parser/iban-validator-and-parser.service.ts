@@ -1,6 +1,6 @@
-import { ValidationErrorsIBAN } from 'ibantools';
+import { ValidationErrorsIBAN } from 'ibantools'
 
-export { getFriendlyErrors };
+export { getFriendlyErrors }
 
 const ibanErrorToMessage = {
   [ValidationErrorsIBAN.NoIBANProvided]: 'No IBAN provided',
@@ -11,8 +11,8 @@ const ibanErrorToMessage = {
   [ValidationErrorsIBAN.WrongIBANChecksum]: 'Wrong IBAN checksum',
   [ValidationErrorsIBAN.WrongAccountBankBranchChecksum]: 'Wrong account bank branch checksum',
   [ValidationErrorsIBAN.QRIBANNotAllowed]: 'QR-IBAN not allowed',
-};
+}
 
 function getFriendlyErrors(errorCodes: ValidationErrorsIBAN[]) {
-  return errorCodes.map(errorCode => ibanErrorToMessage[errorCode]).filter(Boolean);
+  return errorCodes.map((errorCode) => ibanErrorToMessage[errorCode]).filter(Boolean)
 }

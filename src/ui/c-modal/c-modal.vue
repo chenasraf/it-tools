@@ -1,31 +1,31 @@
 <script setup lang="ts">
-import { useTheme } from './c-modal.theme';
+import { useTheme } from './c-modal.theme'
 
 defineOptions({
   inheritAttrs: false,
-});
+})
 
 const props = withDefaults(defineProps<{ open?: boolean; centered?: boolean }>(), {
   open: false,
   centered: true,
-});
+})
 
-const emit = defineEmits(['update:open']);
+const emit = defineEmits(['update:open'])
 
-const isOpen = useVModel(props, 'open', emit, { passive: true });
+const isOpen = useVModel(props, 'open', emit, { passive: true })
 
-const { centered } = toRefs(props);
+const { centered } = toRefs(props)
 
 function close() {
-  isOpen.value = false;
+  isOpen.value = false
 }
 
 function open() {
-  isOpen.value = true;
+  isOpen.value = true
 }
 
 function toggle() {
-  isOpen.value = !isOpen.value;
+  isOpen.value = !isOpen.value
 }
 
 defineExpose({
@@ -33,22 +33,44 @@ defineExpose({
   open,
   toggle,
   isOpen,
-});
+})
 
-const theme = useTheme();
-const modal = ref();
+const theme = useTheme()
+const modal = ref()
 
 onClickOutside(modal, () => {
   if (isOpen.value) {
-    close();
+    close()
   }
-});
+})
 </script>
 
 <template>
   <transition>
-    <div v-if="isOpen" class="c-modal--overlay" fixed left-0 top-0 z-10 h-full w-full flex justify-center px-2 :class="{ 'items-center': centered }">
-      <div ref="modal" class="c-modal--container" v-bind="$attrs" max-w-xl w-full flex-grow rounded-md pa-24px>
+    <div
+      v-if="isOpen"
+      class="c-modal--overlay"
+      fixed
+      left-0
+      top-0
+      z-10
+      h-full
+      w-full
+      flex
+      justify-center
+      px-2
+      :class="{ 'items-center': centered }"
+    >
+      <div
+        ref="modal"
+        class="c-modal--container"
+        v-bind="$attrs"
+        max-w-xl
+        w-full
+        flex-grow
+        rounded-md
+        pa-24px
+      >
         <slot />
       </div>
     </div>

@@ -1,22 +1,23 @@
-import { resolve } from 'node:path';
-import { URL, fileURLToPath } from 'node:url';
+import { resolve } from 'node:path'
+import process from 'node:process'
+import { URL, fileURLToPath } from 'node:url'
 
-import VueI18n from '@intlify/unplugin-vue-i18n/vite';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
-import Unocss from 'unocss/vite';
-import AutoImport from 'unplugin-auto-import/vite';
-import IconsResolver from 'unplugin-icons/resolver';
-import Icons from 'unplugin-icons/vite';
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
-import Components from 'unplugin-vue-components/vite';
-import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
-import markdown from 'vite-plugin-vue-markdown';
-import svgLoader from 'vite-svg-loader';
-import { configDefaults } from 'vitest/config';
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import Unocss from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
+import markdown from 'vite-plugin-vue-markdown'
+import svgLoader from 'vite-svg-loader'
+import { configDefaults } from 'vitest/config'
 
-const baseUrl = process.env.BASE_URL ?? '/';
+const baseUrl = process.env.BASE_URL ?? '/'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,9 +28,7 @@ export default defineConfig({
       compositionOnly: true,
       fullInstall: true,
       strictMessage: false,
-      include: [
-        resolve(__dirname, 'locales/**'),
-      ],
+      include: [resolve(__dirname, 'locales/**')],
     }),
     AutoImport({
       imports: [
@@ -113,4 +112,4 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
-});
+})

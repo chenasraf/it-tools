@@ -1,93 +1,90 @@
 <script setup lang="ts">
-import RandExp from 'randexp';
-import { render } from '@regexper/render';
-import type { ShadowRootExpose } from 'vue-shadow-dom';
-import { matchRegex } from './regex-tester.service';
-import { useValidation } from '@/composable/validation';
-import { useQueryParamOrStorage } from '@/composable/queryParams';
+import RandExp from 'randexp'
+import { render } from '@regexper/render'
+import type { ShadowRootExpose } from 'vue-shadow-dom'
+import { matchRegex } from './regex-tester.service'
+import { useValidation } from '@/composable/validation'
+import { useQueryParamOrStorage } from '@/composable/queryParams'
 
-const regex = useQueryParamOrStorage({ name: 'regex', storageName: 'regex-tester:regex', defaultValue: '' });
-const text = ref('');
-const global = ref(true);
-const ignoreCase = ref(false);
-const multiline = ref(false);
-const dotAll = ref(true);
-const unicode = ref(true);
-const unicodeSets = ref(false);
-const visualizerSVG = ref<ShadowRootExpose>();
+const regex = useQueryParamOrStorage({
+  name: 'regex',
+  storageName: 'regex-tester:regex',
+  defaultValue: '',
+})
+const text = ref('')
+const global = ref(true)
+const ignoreCase = ref(false)
+const multiline = ref(false)
+const dotAll = ref(true)
+const unicode = ref(true)
+const unicodeSets = ref(false)
+const visualizerSVG = ref<ShadowRootExpose>()
 
 const regexValidation = useValidation({
   source: regex,
   rules: [
     {
       message: 'Invalid regex: {0}',
-      validator: value => new RegExp(value),
+      validator: (value) => new RegExp(value),
       getErrorMessage: (value) => {
-        const _ = new RegExp(value);
-        return '';
+        const _ = new RegExp(value)
+        return ''
       },
     },
   ],
-});
+})
 const results = computed(() => {
-  let flags = 'd';
+  let flags = 'd'
   if (global.value) {
-    flags += 'g';
+    flags += 'g'
   }
   if (ignoreCase.value) {
-    flags += 'i';
+    flags += 'i'
   }
   if (multiline.value) {
-    flags += 'm';
+    flags += 'm'
   }
   if (dotAll.value) {
-    flags += 's';
+    flags += 's'
   }
   if (unicode.value) {
-    flags += 'u';
-  }
-  else if (unicodeSets.value) {
-    flags += 'v';
+    flags += 'u'
+  } else if (unicodeSets.value) {
+    flags += 'v'
   }
 
   try {
-    return matchRegex(regex.value, text.value, flags);
+    return matchRegex(regex.value, text.value, flags)
+  } catch (_) {
+    return []
   }
-  catch (_) {
-    return [];
-  }
-});
+})
 
 const sample = computed(() => {
   try {
-    const randexp = new RandExp(new RegExp(regex.value.replace(/\(\?\<[^\>]*\>/g, '(?:')));
-    return randexp.gen();
+    const randexp = new RandExp(new RegExp(regex.value.replace(/\(\?\<[^\>]*\>/g, '(?:')))
+    return randexp.gen()
+  } catch (_) {
+    return ''
   }
-  catch (_) {
-    return '';
-  }
-});
+})
 
-watchEffect(
-  async () => {
-    const regexValue = regex.value;
-    // shadow root is required:
-    // @regexper/render append a <defs><style> that broke svg transparency of icons in the whole site
-    const visualizer = visualizerSVG.value?.shadow_root;
-    if (visualizer) {
-      while (visualizer.lastChild) {
-        visualizer.removeChild(visualizer.lastChild);
-      }
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      try {
-        await render(regexValue, svg);
-      }
-      catch (_) {
-      }
-      visualizer.appendChild(svg);
+watchEffect(async () => {
+  const regexValue = regex.value
+  // shadow root is required:
+  // @regexper/render append a <defs><style> that broke svg transparency of icons in the whole site
+  const visualizer = visualizerSVG.value?.shadow_root
+  if (visualizer) {
+    while (visualizer.lastChild) {
+      visualizer.removeChild(visualizer.lastChild)
     }
-  },
-);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+    try {
+      await render(regexValue, svg)
+    } catch (_) {}
+    visualizer.appendChild(svg)
+  }
+})
 </script>
 
 <template>
@@ -112,16 +109,22 @@ watchEffect(
           <span title="Case-insensitive search">Case-insensitive search. (<code>i</code>)</span>
         </n-checkbox>
         <n-checkbox v-model:checked="multiline">
-          <span title="Allows ^ and $ to match next to newline characters.">Multiline(<code>m</code>)</span>
+          <span title="Allows ^ and $ to match next to newline characters."
+            >Multiline(<code>m</code>)</span
+          >
         </n-checkbox>
         <n-checkbox v-model:checked="dotAll">
           <span title="Allows . to match newline characters.">Singleline(<code>s</code>)</span>
         </n-checkbox>
         <n-checkbox v-model:checked="unicode">
-          <span title="Unicode; treat a pattern as a sequence of Unicode code points.">Unicode(<code>u</code>)</span>
+          <span title="Unicode; treat a pattern as a sequence of Unicode code points."
+            >Unicode(<code>u</code>)</span
+          >
         </n-checkbox>
         <n-checkbox v-model:checked="unicodeSets">
-          <span title="An upgrade to the u mode with more Unicode features.">Unicode Sets (<code>v</code>)</span>
+          <span title="An upgrade to the u mode with more Unicode features."
+            >Unicode Sets (<code>v</code>)</span
+          >
         </n-checkbox>
       </n-space>
 
@@ -140,18 +143,10 @@ watchEffect(
       <n-table v-if="results?.length > 0">
         <thead>
           <tr>
-            <th scope="col">
-              Index in text
-            </th>
-            <th scope="col">
-              Value
-            </th>
-            <th scope="col">
-              Captures
-            </th>
-            <th scope="col">
-              Groups
-            </th>
+            <th scope="col">Index in text</th>
+            <th scope="col">Value</th>
+            <th scope="col">Captures</th>
+            <th scope="col">Groups</th>
           </tr>
         </thead>
         <tbody>
@@ -161,7 +156,8 @@ watchEffect(
             <td>
               <ul>
                 <li v-for="capture in match.captures" :key="capture.name">
-                  "{{ capture.name }}" = {{ capture.value }} [{{ capture.start }} - {{ capture.end }}]
+                  "{{ capture.name }}" = {{ capture.value }} [{{ capture.start }} -
+                  {{ capture.end }}]
                 </li>
               </ul>
             </td>
@@ -175,19 +171,15 @@ watchEffect(
           </tr>
         </tbody>
       </n-table>
-      <c-alert v-else>
-        No match
-      </c-alert>
+      <c-alert v-else> No match </c-alert>
     </c-card>
 
     <c-card title="Sample matching text" mt-3>
-      <pre style="white-space: pre-wrap; word-break: break-all;">{{ sample }}</pre>
+      <pre style="white-space: pre-wrap; word-break: break-all">{{ sample }}</pre>
     </c-card>
 
-    <c-card title="Regex Diagram" style="overflow-x: scroll;" mt-3>
-      <shadow-root ref="visualizerSVG">
-&#xa0;
-      </shadow-root>
+    <c-card title="Regex Diagram" style="overflow-x: scroll" mt-3>
+      <shadow-root ref="visualizerSVG"> &#xa0; </shadow-root>
     </c-card>
   </div>
 </template>

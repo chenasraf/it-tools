@@ -1,3 +1,3 @@
-import type { createTrackerService } from './tracker.services';
+import type { createTrackerService } from './tracker.services'
 
-export type TrackerService = ReturnType<typeof createTrackerService>;
+export type TrackerService = ReturnType<typeof createTrackerService>

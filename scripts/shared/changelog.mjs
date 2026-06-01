@@ -1,15 +1,18 @@
-import { readFile, writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'node:fs/promises'
 
-export { addToChangelog };
+export { addToChangelog }
 
 async function addToChangelog({ changelog, version, changelogPath = './CHANGELOG.md' }) {
-  const changelogContent = await readFile(changelogPath, 'utf-8');
-  const versionTitle = `## Version ${version}`;
+  const changelogContent = await readFile(changelogPath, 'utf-8')
+  const versionTitle = `## Version ${version}`
 
   if (changelogContent.includes(versionTitle)) {
-    throw new Error(`Version ${version} already exists in the changelog`);
+    throw new Error(`Version ${version} already exists in the changelog`)
   }
 
-  const newChangeLogContent = changelogContent.replace('## ', `${versionTitle}\n\n${changelog}\n\n## `);
-  await writeFile(changelogPath, newChangeLogContent, 'utf-8');
+  const newChangeLogContent = changelogContent.replace(
+    '## ',
+    `${versionTitle}\n\n${changelog}\n\n## `,
+  )
+  await writeFile(changelogPath, newChangeLogContent, 'utf-8')
 }

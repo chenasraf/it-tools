@@ -1,12 +1,12 @@
-import { describe, expect, it } from 'vitest';
-import { diff } from './json-diff.models';
+import { describe, expect, it } from 'vitest'
+import { diff } from './json-diff.models'
 
 describe('json-diff models', () => {
   describe('diff', () => {
     it('list object differences', () => {
-      const obj = { a: 1, b: 2 };
-      const newObj = { a: 1, b: 2, c: 3 };
-      const result = diff(obj, newObj);
+      const obj = { a: 1, b: 2 }
+      const newObj = { a: 1, b: 2, c: 3 }
+      const result = diff(obj, newObj)
 
       expect(result).toEqual({
         key: '',
@@ -37,13 +37,13 @@ describe('json-diff models', () => {
         oldValue: { a: 1, b: 2 },
         value: { a: 1, b: 2, c: 3 },
         status: 'children-updated',
-      });
-    });
+      })
+    })
 
     it('list array differences', () => {
-      const obj = [1, 2];
-      const newObj = [1, 2, 3];
-      const result = diff(obj, newObj);
+      const obj = [1, 2]
+      const newObj = [1, 2, 3]
+      const result = diff(obj, newObj)
 
       expect(result).toEqual({
         key: '',
@@ -74,7 +74,7 @@ describe('json-diff models', () => {
         oldValue: [1, 2],
         value: [1, 2, 3],
         status: 'children-updated',
-      });
-    });
-  });
-});
+      })
+    })
+  })
+})

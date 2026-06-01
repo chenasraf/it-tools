@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { Copy } from '@vicons/tabler';
-import { useElementSize } from '@vueuse/core';
-import hljs from 'highlight.js/lib/core';
-import jsonHljs from 'highlight.js/lib/languages/json';
-import sqlHljs from 'highlight.js/lib/languages/sql';
-import xmlHljs from 'highlight.js/lib/languages/xml';
-import yamlHljs from 'highlight.js/lib/languages/yaml';
-import iniHljs from 'highlight.js/lib/languages/ini';
-import markdownHljs from 'highlight.js/lib/languages/markdown';
-import { useCopy } from '@/composable/copy';
+import { Copy } from '@vicons/tabler'
+import { useElementSize } from '@vueuse/core'
+import hljs from 'highlight.js/lib/core'
+import jsonHljs from 'highlight.js/lib/languages/json'
+import sqlHljs from 'highlight.js/lib/languages/sql'
+import xmlHljs from 'highlight.js/lib/languages/xml'
+import yamlHljs from 'highlight.js/lib/languages/yaml'
+import iniHljs from 'highlight.js/lib/languages/ini'
+import markdownHljs from 'highlight.js/lib/languages/markdown'
+import { useCopy } from '@/composable/copy'
 
 const props = withDefaults(
   defineProps<{
@@ -24,20 +24,20 @@ const props = withDefaults(
     copyPlacement: 'top-right',
     copyMessage: 'Copy to clipboard',
   },
-);
-hljs.registerLanguage('sql', sqlHljs);
-hljs.registerLanguage('json', jsonHljs);
-hljs.registerLanguage('html', xmlHljs);
-hljs.registerLanguage('xml', xmlHljs);
-hljs.registerLanguage('yaml', yamlHljs);
-hljs.registerLanguage('toml', iniHljs);
-hljs.registerLanguage('markdown', markdownHljs);
+)
+hljs.registerLanguage('sql', sqlHljs)
+hljs.registerLanguage('json', jsonHljs)
+hljs.registerLanguage('html', xmlHljs)
+hljs.registerLanguage('xml', xmlHljs)
+hljs.registerLanguage('yaml', yamlHljs)
+hljs.registerLanguage('toml', iniHljs)
+hljs.registerLanguage('markdown', markdownHljs)
 
-const { value, language, followHeightOf, copyPlacement, copyMessage } = toRefs(props);
-const { height } = followHeightOf.value ? useElementSize(followHeightOf) : { height: ref(null) };
+const { value, language, followHeightOf, copyPlacement, copyMessage } = toRefs(props)
+const { height } = followHeightOf.value ? useElementSize(followHeightOf) : { height: ref(null) }
 
-const { copy, isJustCopied } = useCopy({ source: value, createToast: false });
-const tooltipText = computed(() => isJustCopied.value ? 'Copied!' : copyMessage.value);
+const { copy, isJustCopied } = useCopy({ source: value, createToast: false })
+const tooltipText = computed(() => (isJustCopied.value ? 'Copied!' : copyMessage.value))
 </script>
 
 <template>
@@ -46,7 +46,13 @@ const tooltipText = computed(() => isJustCopied.value ? 'Copied!' : copyMessage.
       <n-scrollbar
         x-scrollable
         trigger="none"
-        :style="height ? `min-height: ${height - 40 /* card padding */ + 10 /* negative margin compensation */}px` : ''"
+        :style="
+          height
+            ? `min-height: ${
+                height - 40 /* card padding */ + 10 /* negative margin compensation */
+              }px`
+            : ''
+        "
       >
         <n-config-provider :hljs="hljs">
           <n-code :code="value" :language="language" :trim="false" data-test-id="area-content" />

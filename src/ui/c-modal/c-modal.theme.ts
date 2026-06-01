@@ -1,5 +1,5 @@
-import { defineThemes } from '../theme/theme.models';
-import { appThemes } from '../theme/themes';
+import { defineThemes } from '../theme/theme.models'
+import { appThemes } from '../theme/themes'
 
 export const { useTheme } = defineThemes({
   dark: {
@@ -8,4 +8,4 @@ export const { useTheme } = defineThemes({
   light: {
     background: appThemes.light.background,
   },
-});
+})

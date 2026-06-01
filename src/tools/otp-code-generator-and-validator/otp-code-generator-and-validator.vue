@@ -1,22 +1,28 @@
 <script setup lang="ts">
-import { useTimestamp } from '@vueuse/core';
-import { useThemeVars } from 'naive-ui';
-import { useQRCode } from '../qr-code-generator/useQRCode';
-import { base32toHex, buildKeyUri, generateSecret, generateTOTP, getCounterFromTime } from './otp.service';
-import TokenDisplay from './token-display.vue';
-import { useStyleStore } from '@/stores/style.store';
-import InputCopyable from '@/components/InputCopyable.vue';
-import { computedRefreshable } from '@/composable/computedRefreshable';
+import { useTimestamp } from '@vueuse/core'
+import { useThemeVars } from 'naive-ui'
+import { useQRCode } from '../qr-code-generator/useQRCode'
+import {
+  base32toHex,
+  buildKeyUri,
+  generateSecret,
+  generateTOTP,
+  getCounterFromTime,
+} from './otp.service'
+import TokenDisplay from './token-display.vue'
+import { useStyleStore } from '@/stores/style.store'
+import InputCopyable from '@/components/InputCopyable.vue'
+import { computedRefreshable } from '@/composable/computedRefreshable'
 
-const now = useTimestamp();
-const interval = computed(() => (now.value / 1000) % 30);
-const theme = useThemeVars();
-const styleStore = useStyleStore();
+const now = useTimestamp()
+const interval = computed(() => (now.value / 1000) % 30)
+const theme = useThemeVars()
+const styleStore = useStyleStore()
 
-const secret = ref(generateSecret());
+const secret = ref(generateSecret())
 
 function refreshSecret() {
-  secret.value = generateSecret();
+  secret.value = generateSecret()
 }
 
 const [tokens] = computedRefreshable(
@@ -26,9 +32,9 @@ const [tokens] = computedRefreshable(
     next: generateTOTP({ key: secret.value, now: now.value + 30000 }),
   }),
   { throttle: 500 },
-);
+)
 
-const keyUri = computed(() => buildKeyUri({ secret: secret.value }));
+const keyUri = computed(() => buildKeyUri({ secret: secret.value }))
 
 const { qrcode } = useQRCode({
   text: keyUri,
@@ -37,7 +43,7 @@ const { qrcode } = useQRCode({
     foreground: '#000000',
   },
   options: { width: 210 },
-});
+})
 
 const secretValidationRules = [
   {
@@ -48,7 +54,7 @@ const secretValidationRules = [
     message: 'Please set a secret',
     validator: (value: string) => value !== '',
   },
-];
+]
 </script>
 
 <template>
@@ -72,16 +78,18 @@ const secretValidationRules = [
     <div>
       <TokenDisplay :tokens="tokens" />
 
-      <n-progress :percentage="(100 * interval) / 30" :color="theme.primaryColor" :show-indicator="false" />
+      <n-progress
+        :percentage="(100 * interval) / 30"
+        :color="theme.primaryColor"
+        :show-indicator="false"
+      />
       <div style="text-align: center">
         Next in {{ String(Math.floor(30 - interval)).padStart(2, '0') }}s
       </div>
     </div>
     <div mt-4 flex flex-col items-center justify-center gap-3>
       <n-image :src="qrcode" />
-      <c-button :href="keyUri" target="_blank">
-        Open Key URI in new tab
-      </c-button>
+      <c-button :href="keyUri" target="_blank"> Open Key URI in new tab </c-button>
     </div>
   </div>
   <div style="max-width: 350px">

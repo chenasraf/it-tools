@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { formatXml, isValidXML } from './xml-formatter.service';
-import type { UseValidationRule } from '@/composable/validation';
+import { formatXml, isValidXML } from './xml-formatter.service'
+import type { UseValidationRule } from '@/composable/validation'
 
-const defaultValue = '<hello><world>foo</world><world>bar</world></hello>';
-const indentSize = useStorage('xml-formatter:indent-size', 2);
-const collapseContent = useStorage('xml-formatter:collapse-content', true);
+const defaultValue = '<hello><world>foo</world><world>bar</world></hello>'
+const indentSize = useStorage('xml-formatter:indent-size', 2)
+const collapseContent = useStorage('xml-formatter:collapse-content', true)
 
 function transformer(value: string) {
   return formatXml(value, {
     indentation: ' '.repeat(indentSize.value),
     collapseContent: collapseContent.value,
     lineSeparator: '\n',
-  });
+  })
 }
 
 const rules: UseValidationRule<string>[] = [
@@ -19,7 +19,7 @@ const rules: UseValidationRule<string>[] = [
     validator: isValidXML,
     message: 'Provided XML is not valid.',
   },
-];
+]
 </script>
 
 <template>
@@ -28,7 +28,12 @@ const rules: UseValidationRule<string>[] = [
       <n-form-item label="Collapse content:" label-placement="left">
         <n-switch v-model:value="collapseContent" />
       </n-form-item>
-      <n-form-item label="Indent size:" label-placement="left" label-width="100" :show-feedback="false">
+      <n-form-item
+        label="Indent size:"
+        label-placement="left"
+        label-width="100"
+        :show-feedback="false"
+      >
         <n-input-number v-model:value="indentSize" min="0" max="10" w-100px />
       </n-form-item>
     </div>

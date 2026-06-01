@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-import { useCopy } from '@/composable/copy';
+import { useCopy } from '@/composable/copy'
 
-const props = withDefaults(defineProps<{ value: string; label?: string; copyable?: boolean }>(), { label: undefined, copyable: true });
-const { value, label } = toRefs(props);
+const props = withDefaults(defineProps<{ value: string; label?: string; copyable?: boolean }>(), {
+  label: undefined,
+  copyable: true,
+})
+const { value, label } = toRefs(props)
 
-const { copy, isJustCopied } = useCopy({ source: value });
+const { copy, isJustCopied } = useCopy({ source: value })
 
-const isModalOpen = ref(false);
-const toggleModal = useToggle(isModalOpen);
+const isModalOpen = ref(false)
+const toggleModal = useToggle(isModalOpen)
 </script>
 
 <template>

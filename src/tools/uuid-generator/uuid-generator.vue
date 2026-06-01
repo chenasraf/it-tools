@@ -1,53 +1,73 @@
 <script setup lang="ts">
-import { v1 as generateUuidV1, v3 as generateUuidV3, v4 as generateUuidV4, v5 as generateUuidV5, NIL as nilUuid } from 'uuid';
-import { useCopy } from '@/composable/copy';
-import { computedRefreshable } from '@/composable/computedRefreshable';
-import { withDefaultOnError } from '@/utils/defaults';
+import {
+  v1 as generateUuidV1,
+  v3 as generateUuidV3,
+  v4 as generateUuidV4,
+  v5 as generateUuidV5,
+  NIL as nilUuid,
+} from 'uuid'
+import { useCopy } from '@/composable/copy'
+import { computedRefreshable } from '@/composable/computedRefreshable'
+import { withDefaultOnError } from '@/utils/defaults'
 
-const versions = ['NIL', 'v1', 'v3', 'v4', 'v5'] as const;
+const versions = ['NIL', 'v1', 'v3', 'v4', 'v5'] as const
 
-const version = useStorage<typeof versions[number]>('uuid-generator:version', 'v4');
-const count = useStorage('uuid-generator:quantity', 1);
-const v35Args = ref({ namespace: '6ba7b811-9dad-11d1-80b4-00c04fd430c8', name: '' });
+const version = useStorage<(typeof versions)[number]>('uuid-generator:version', 'v4')
+const count = useStorage('uuid-generator:quantity', 1)
+const v35Args = ref({ namespace: '6ba7b811-9dad-11d1-80b4-00c04fd430c8', name: '' })
 
 const validUuidRules = [
   {
     message: 'Invalid UUID',
     validator: (value: string) => {
       if (value === nilUuid) {
-        return true;
+        return true
       }
 
-      return Boolean(value.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/));
+      return Boolean(
+        value.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/),
+      )
     },
   },
-];
+]
 
 const generators = {
   NIL: () => nilUuid,
-  v1: (index: number) => generateUuidV1({
-    clockseq: index,
-    msecs: Date.now(),
-    nsecs: Math.floor(Math.random() * 10000),
-    node: Array.from({ length: 6 }, () => Math.floor(Math.random() * 256)),
-  }),
+  v1: (index: number) =>
+    generateUuidV1({
+      clockseq: index,
+      msecs: Date.now(),
+      nsecs: Math.floor(Math.random() * 10000),
+      node: Array.from({ length: 6 }, () => Math.floor(Math.random() * 256)),
+    }),
   v3: () => generateUuidV3(v35Args.value.name, v35Args.value.namespace),
   v4: () => generateUuidV4(),
   v5: () => generateUuidV5(v35Args.value.name, v35Args.value.namespace),
-};
+}
 
-const [uuids, refreshUUIDs] = computedRefreshable(() => withDefaultOnError(() =>
-  Array.from({ length: count.value }, (_ignored, index) => {
-    const generator = generators[version.value] ?? generators.NIL;
-    return generator(index);
-  }).join('\n'), ''));
+const [uuids, refreshUUIDs] = computedRefreshable(() =>
+  withDefaultOnError(
+    () =>
+      Array.from({ length: count.value }, (_ignored, index) => {
+        const generator = generators[version.value] ?? generators.NIL
+        return generator(index)
+      }).join('\n'),
+    '',
+  ),
+)
 
-const { copy } = useCopy({ source: uuids, text: 'UUIDs copied to the clipboard' });
+const { copy } = useCopy({ source: uuids, text: 'UUIDs copied to the clipboard' })
 </script>
 
 <template>
   <div>
-    <c-buttons-select v-model:value="version" :options="versions" label="UUID version" label-width="100px" mb-2 />
+    <c-buttons-select
+      v-model:value="version"
+      :options="versions"
+      label="UUID version"
+      label-width="100px"
+      mb-2
+    />
 
     <div mb-2 flex items-center>
       <span w-100px>Quantity </span>
@@ -106,12 +126,8 @@ const { copy } = useCopy({ source: uuids, text: 'UUIDs copied to the clipboard' 
     />
 
     <div flex justify-center gap-3>
-      <c-button autofocus @click="copy()">
-        Copy
-      </c-button>
-      <c-button @click="refreshUUIDs">
-        Refresh
-      </c-button>
+      <c-button autofocus @click="copy()"> Copy </c-button>
+      <c-button @click="refreshUUIDs"> Refresh </c-button>
     </div>
   </div>
 </template>

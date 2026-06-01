@@ -1,5 +1,5 @@
-import { Artboard } from '@vicons/tabler';
-import { defineTool } from '../tool';
+import { Artboard } from '@vicons/tabler'
+import { defineTool } from '../tool'
 
 export const tool = defineTool({
   name: 'ASCII Art Text Generator',
@@ -9,4 +9,4 @@ export const tool = defineTool({
   component: () => import('./ascii-text-drawer.vue'),
   icon: Artboard,
   createdAt: new Date('2024-03-03'),
-});
+})

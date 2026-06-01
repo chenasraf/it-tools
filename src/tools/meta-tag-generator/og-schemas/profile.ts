@@ -1,4 +1,4 @@
-import type { OGSchemaType } from '../OGSchemaType.type';
+import type { OGSchemaType } from '../OGSchemaType.type'
 
 export const profile: OGSchemaType = {
   name: 'Profile',
@@ -15,7 +15,17 @@ export const profile: OGSchemaType = {
       placeholder: 'Enter the last name of the person...',
       key: 'profile:last_name',
     },
-    { type: 'input', label: 'Username', placeholder: 'Enter the username of the person...', key: 'profile:username' },
-    { type: 'input', label: 'Gender', placeholder: 'Enter the gender of the person...', key: 'profile:gender' },
+    {
+      type: 'input',
+      label: 'Username',
+      placeholder: 'Enter the username of the person...',
+      key: 'profile:username',
+    },
+    {
+      type: 'input',
+      label: 'Gender',
+      placeholder: 'Enter the gender of the person...',
+      key: 'profile:gender',
+    },
   ],
-};
+}
