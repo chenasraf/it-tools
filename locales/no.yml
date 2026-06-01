@@ -1,69 +1,69 @@
 home:
   categories:
     newestTools: Nyeste verktøy
-    favoriteTools: 'Dine favoritt verktøy'
-    allTools: 'Alle verktøyene'
-    favoritesDndToolTip: 'Dra og slipp for å omordne favoritter'
-  subtitle: 'Nyttige verktøy for utviklere'
-  toggleMenu: 'Vekslemenmy'
+    favoriteTools: "Dine favoritt verktøy"
+    allTools: "Alle verktøyene"
+    favoritesDndToolTip: "Dra og slipp for å omordne favoritter"
+  subtitle: "Nyttige verktøy for utviklere"
+  toggleMenu: "Vekslemenmy"
   home: Hjem
-  uiLib: 'UI Bib'
-  support: 'Støtt utviklingen av IT-Tools'
-  buyMeACoffee: 'Kjøp en kaffe til meg'
+  uiLib: "UI Bib"
+  support: "Støtt utviklingen av IT-Tools"
+  buyMeACoffee: "Kjøp en kaffe til meg"
   follow:
-    title: 'Liker du it-tools?'
-    p1: 'Gi oss en stjerne på'
-    githubRepository: 'IT-Tools GitHub-depotet'
-    p2: 'eller følg oss på'
-    twitterXAccount: 'IT-Tools sin X konto'
-    thankYou: 'Tusen takk!'
+    title: "Liker du it-tools?"
+    p1: "Gi oss en stjerne på"
+    githubRepository: "IT-Tools GitHub-depotet"
+    p2: "eller følg oss på"
+    twitterXAccount: "IT-Tools sin X konto"
+    thankYou: "Tusen takk!"
   nav:
-    github: 'GitHub-depot'
-    githubRepository: 'IT-Tools GitHub-depot'
-    twitterX: 'X konto'
-    twitterXAccount: 'IT Tools X konto'
-    about: 'Om  IT-Tools'
-    aboutLabel: 'Om'
-    darkMode: 'Mørk modus'
-    lightMode: 'Lys modus'
-    mode: 'Veksle mørk/lys modus'
+    github: "GitHub-depot"
+    githubRepository: "IT-Tools GitHub-depot"
+    twitterX: "X konto"
+    twitterXAccount: "IT Tools X konto"
+    about: "Om  IT-Tools"
+    aboutLabel: "Om"
+    darkMode: "Mørk modus"
+    lightMode: "Lys modus"
+    mode: "Veksle mørk/lys modus"
 about:
   content: >
     # Om IT-Tools
 
     Denne vidunderlige nettsiden, laget med ❤ av [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about) , sammenstiller nyttige verktøy for utviklere og folk som jobber innen IT. Hvis du finner dette nyttig, Del det gjerne med andre som du tror kan få nytte av dette, og ikke glem å lage et bokmerke!
 
-    IT Tools er åpen kildekode (under GPL-3.0 lisensen) og gratis, og det vil det alltid være, men det koster å drifte og å fornye domenet. Hvis du ønsker å støtte arbeidet mitt, og motivere meg til å legge til flere verktøy, gjerne støtt meg ved å [sponse meg](https://www.buymeacoffee.com/cthmsst).
+    IT Tools er åpen kildekode (under GPL-3.0 lisensen) og gratis, og det vil det alltid være, men det koster å drifte og å fornye domenet. Hvis du ønsker å støtte arbeidet mitt, og motivere meg til å legge til flere verktøy, gjerne støtt meg ved å [sponse meg](https://www.buymeacoffee.com/casraf).
 
     ## Teknologier
 
-    IT Tools er laget i Vue.js (Vue 3) med Naive UI komponent bibliotektet og er hosted og kontinuerlig deployet av Vercel. Tredjeparts åpen-kildekode biblioteker er brukt i noen verktøy, du kan finne den komplette listen i [package.json](https://github.com/CorentinTh/it-tools/blob/main/package.json) filen i depoet.
+    IT Tools er laget i Vue.js (Vue 3) med Naive UI komponent bibliotektet og er hosted og kontinuerlig deployet av Vercel. Tredjeparts åpen-kildekode biblioteker er brukt i noen verktøy, du kan finne den komplette listen i [package.json](https://github.com/chenasraf/it-tools/blob/main/package.json) filen i depoet.
 
     ## Funnet en feil? Et verktøy som mangler?
 
-    Hvis du trenger et verktøy som foreløpig ikke er tilgjengelig her, og du tenker det kan være nyttig for andre, så er du velkommen til å legge til en funksjonsforespørsel i [problem seksjonen](https://github.com/CorentinTh/it-tools/issues/new/choose) i github-depotet.
+    Hvis du trenger et verktøy som foreløpig ikke er tilgjengelig her, og du tenker det kan være nyttig for andre, så er du velkommen til å legge til en funksjonsforespørsel i [problem seksjonen](https://github.com/chenasraf/it-tools/issues/new/choose) i github-depotet.
 
-    Og hvis du har funnet en feil, eller noe ikke oppfører seg som forventet, vennligst send inn en feilrapport i [problem seksjonen](https://github.com/CorentinTh/it-tools/issues/new/choose) i github-depotet.
+    Og hvis du har funnet en feil, eller noe ikke oppfører seg som forventet, vennligst send inn en feilrapport i [problem seksjonen](https://github.com/chenasraf/it-tools/issues/new/choose) i github-depotet.
 
 404:
-  notFound: '404 ikke funnet'
-  sorry: 'Beklager, denne siden ser ikke ut til å eksistere'
-  maybe: 'Kanskje informasjonskapslene oppfører seg rart, prøvd en tvungen oppfriskning?'
-  backHome: 'Tilbake til start'
+  notFound: "404 ikke funnet"
+  sorry: "Beklager, denne siden ser ikke ut til å eksistere"
+  maybe: "Kanskje informasjonskapslene oppfører seg rart, prøvd en tvungen oppfriskning?"
+  backHome: "Tilbake til start"
 favoriteButton:
-  remove: 'Fjern fra favoritter'
-  add: 'Legg til favoritter'
+  remove: "Fjern fra favoritter"
+  add: "Legg til favoritter"
 toolCard:
   new: Ny
 search:
   label: Søk
 tools:
   categories:
-    favorite-tools: 'Dine favoritt verktøy'
+    favorite-tools: "Dine favoritt verktøy"
     crypto: Krypto
     converter: Konvertering
     web: Web
-    images and videos: 'Bilder & Videoer'
+    images and videos: "Bilder & Videoer"
     development: Utvikling
     network: Nettverk
     math: Matte
@@ -88,7 +88,7 @@ tools:
     numbers: Siffer (123...)
     symbols: Symboler (!-;...)
     length: Lengde
-    tokenPlaceholder: 'Tokenet...'
+    tokenPlaceholder: "Tokenet..."
     copied: Tokenet er kopiert til utklippstavlen.
     button:
       copy: Kopier
@@ -315,7 +315,7 @@ tools:
 
   hash-text:
     title: Hash tekst
-    description: 'Hash en tekst streng med en av algoritmene : MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 eller RIPEMD160'
+    description: "Hash en tekst streng med en av algoritmene : MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 eller RIPEMD160"
 
   json-to-toml:
     title: JSON til TOML

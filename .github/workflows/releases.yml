@@ -3,7 +3,7 @@ name: Release new versions
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - "v*.*.*"
 
 jobs:
   docker-release:
@@ -42,10 +42,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            corentinth/it-tools:latest
-            corentinth/it-tools:${{ env.RELEASE_VERSION }}
-            ghcr.io/corentinth/it-tools:latest
-            ghcr.io/corentinth/it-tools:${{ env.RELEASE_VERSION}}
+            chenasraf/it-tools:latest
+            chenasraf/it-tools:${{ env.RELEASE_VERSION }}
+            ghcr.io/chenasraf/it-tools:latest
+            ghcr.io/chenasraf/it-tools:${{ env.RELEASE_VERSION}}
 
   github-release:
     runs-on: ubuntu-latest
@@ -62,7 +62,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm i
@@ -93,11 +93,11 @@ jobs:
             ## Docker images
 
             - Docker Hub
-              - `corentinth/it-tools:latest`
-              - `corentinth/it-tools:${{ env.RELEASE_VERSION }}`
+              - `chenasraf/it-tools:latest`
+              - `chenasraf/it-tools:${{ env.RELEASE_VERSION }}`
             - GitHub Container Registry
-              - `ghcr.io/corentinth/it-tools:latest`
-              - `ghcr.io/corentinth/it-tools:${{ env.RELEASE_VERSION}}`
+              - `ghcr.io/chenasraf/it-tools:latest`
+              - `ghcr.io/chenasraf/it-tools:${{ env.RELEASE_VERSION}}`
 
             ## Changelog
 
