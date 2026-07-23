@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/chenasraf/it-tools/compare/v1.0.0...v1.0.1) (2026-07-23)
+
+
+### Miscellaneous Chores
+
+* prepare v1.0.1 ([c9c3506](https://github.com/chenasraf/it-tools/commit/c9c3506e13c31d46f802fc51f3293ea85487d14b))
+
 ## [1.0.0](https://github.com/chenasraf/it-tools/compare/v1.0.0...v1.0.0) (2026-06-01)
 
 
