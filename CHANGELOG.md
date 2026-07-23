@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/chenasraf/it-tools/compare/v1.0.1...v1.0.2) (2026-07-23)
+
+
+### Bug Fixes
+
+* **docker:** copy pnpm-workspace.yaml and skip lefthook prepare ([5fbf23a](https://github.com/chenasraf/it-tools/commit/5fbf23a92f7b6f18d3ef2e7d2b7e033d7d876871))
+
 ## [1.0.1](https://github.com/chenasraf/it-tools/compare/v1.0.0...v1.0.1) (2026-07-23)
 
 
