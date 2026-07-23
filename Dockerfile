@@ -4,8 +4,9 @@ FROM node:lts-alpine AS build-stage
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV CI true
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && pnpm i --frozen-lockfile
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+# drop the prepare script (lefthook install) — git hooks aren't needed in the image and git isn't present
+RUN npm pkg delete scripts.prepare && corepack enable && pnpm i --frozen-lockfile
 COPY . .
 RUN pnpm build
 
